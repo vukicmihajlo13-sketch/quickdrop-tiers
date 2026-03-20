@@ -1,8 +1,16 @@
 import { FaCrown } from 'react-icons/fa';
 
 export default function Rankings({ players = [] }) {
-  // Sort players by points (highest first) to automate the ranking order
-  const sortedPlayers = [...players].sort((a, b) => b.points - a.points);
+  // 1. Sort by ELO (points), then by IGN (Alphabetical) if points are tied
+  // 2. Limit the list to the Top 100 players
+  const sortedPlayers = [...players]
+    .sort((a, b) => {
+      if (b.points !== a.points) {
+        return b.points - a.points; // Higher ELO first
+      }
+      return a.ign.localeCompare(b.ign); // A-Z if ELO is equal
+    })
+    .slice(0, 100);
 
   return (
     <div className="rankings-container">
@@ -40,7 +48,7 @@ export default function Rankings({ players = [] }) {
               </div>
 
               <div className="player-stats-icons">
-                 {/* Visual representation of the player's primary tier */}
+                 {/* Visual representation of the kit tiers */}
                  {['shield', 'sword', 'axe', 'pearl', 'potion'].map((icon) => (
                    <div key={icon} className="kit-icon-group">
                      <div className={`kit-dot ${player.tier.startsWith('H') ? 'ht-gold' : 'lt-silver'}`}></div>
@@ -54,7 +62,53 @@ export default function Rankings({ players = [] }) {
       </div>
 
       <style jsx>{`
-        /* ... (Keep the CSS from the previous Rankings component) ... */
+        .rankings-container { width: 100%; margin-top: 20px; }
+        .rankings-list { display: flex; flex-direction: column; gap: 10px; }
+        
+        .player-row { 
+          background: #11141b; 
+          border: 1px solid #1f232d; 
+          border-radius: 6px; 
+          display: flex; 
+          align-items: center; 
+          height: 65px; 
+          overflow: hidden;
+        }
+
+        .rank-one-glow { border-color: #fbbf24; box-shadow: 0 0 15px rgba(251, 191, 36, 0.1); }
+
+        .player-rank-box {
+          width: 80px;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 900;
+          font-style: italic;
+          font-size: 1.4rem;
+          clip-path: polygon(0 0, 100% 0, 75% 100%, 0% 100%);
+          margin-right: 15px;
+        }
+
+        .gold-bg { background: #fbbf24; color: #000; }
+        .dark-bg { background: #1f232d; color: #fff; }
+
+        .player-identity { flex: 2; display: flex; align-items: center; gap: 12px; }
+        .player-avatar-small { border-radius: 4px; }
+        .p-name { font-weight: 800; font-size: 1.1rem; color: #fff; display: block; }
+        .p-sub { font-size: 0.75rem; color: #9ca3af; display: flex; align-items: center; gap: 5px; }
+        .p-points { color: #3b82f6; font-weight: 700; }
+
+        .region-badge { padding: 4px 8px; border-radius: 4px; font-weight: 900; font-size: 0.7rem; background: rgba(0,0,0,0.2); }
+        .na-red { color: #ef4444; border: 1px solid #ef444433; }
+        .eu-blue { color: #3b82f6; border: 1px solid #3b82f633; }
+
+        .player-stats-icons { flex: 2; display: flex; justify-content: flex-end; gap: 12px; padding-right: 20px; }
+        .kit-icon-group { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+        .kit-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .ht-gold { background: #fbbf24; box-shadow: 0 0 5px #fbbf24; }
+        .lt-silver { background: #94a3b8; }
+        .kit-label { font-size: 0.6rem; font-weight: 900; color: #64748b; }
       `}</style>
     </div>
   );
