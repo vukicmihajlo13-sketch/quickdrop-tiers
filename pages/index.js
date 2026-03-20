@@ -19,7 +19,7 @@ export default function Home() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  return (
+return (
     <div style={{ backgroundColor: '#0b0d12', minHeight: '100vh', color: 'white', fontFamily: 'Inter, sans-serif' }}>
       
       {/* NAVBAR */}
@@ -41,7 +41,7 @@ export default function Home() {
           height: '60px'
         }}>
           
-          {/* 1. LOGO (Far Left) */}
+          {/* 1. LOGO */}
           <div style={{ zIndex: 10, flex: '0 1 auto', paddingLeft: '15px' }}>
             <h1 style={{ 
               fontSize: '2.2rem', 
@@ -56,7 +56,7 @@ export default function Home() {
             </h1>
           </div>
 
-          {/* 2. CENTERED LINKS (Interactable Fix) */}
+          {/* 2. CENTERED LINKS */}
           <div style={{ 
             display: 'flex', 
             gap: '35px', 
@@ -80,20 +80,19 @@ export default function Home() {
             <a href="https://discord.gg/EKXHuKMXT4" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <FaDiscord size={18} /> Discord
             </a>
-            {/* KITS LINK */}
             <a href="#kits" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <FaShieldAlt size={16} /> Kits
             </a>
           </div>
 
-          {/* 3. SOCIALS (Far Right) */}
+          {/* 3. SOCIALS */}
           <div style={{ display: 'flex', gap: '20px', color: '#9ca3af', zIndex: 10, flex: '0 1 auto', justifyContent: 'flex-end', paddingRight: '20px' }}>
              <a href="https://discord.gg/EKXHuKMXT4" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}><FaDiscord size={26}/></a>
              <a href="https://www.youtube.com/@QuickdropTierlist" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}><FaYoutube size={26}/></a>
           </div>
         </div>
 
-        {/* SEARCH BAR (Centered) */}
+        {/* SEARCH BAR */}
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '35px' }}>
           <div style={{ position: 'relative', width: '100%', maxWidth: '750px' }}>
             <input 
@@ -122,6 +121,71 @@ export default function Home() {
           </div>
         </div>
       </nav>
+
+      {/* PLAYER FEATURE SECTION */}
+      <main style={{ maxWidth: '1100px', margin: '60px auto', padding: '0 20px' }}>
+        <div style={{ 
+          display: 'flex', 
+          gap: '40px', 
+          alignItems: 'center', 
+          backgroundColor: '#11141b', 
+          padding: '40px', 
+          borderRadius: '20px', 
+          border: '1px solid #1f232d',
+          boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
+        }}>
+          
+          {/* PLAYER CARD (LEFT) */}
+          <div style={{ 
+            backgroundColor: '#080a0f', 
+            padding: '30px', 
+            borderRadius: '15px', 
+            border: '1px solid #3b82f6', 
+            textAlign: 'center',
+            minWidth: '250px'
+          }}>
+            <img 
+              src="https://minotar.net/helm/caackee/120.png" 
+              alt="caackee" 
+              style={{ borderRadius: '10px', marginBottom: '15px', boxShadow: '0 0 15px rgba(59, 130, 246, 0.5)' }} 
+            />
+            <h2 style={{ margin: '0', fontSize: '1.5rem', color: '#fff' }}>caackee</h2>
+            <div style={{ 
+              display: 'inline-block', 
+              marginTop: '10px', 
+              padding: '4px 12px', 
+              backgroundColor: '#3b82f6', 
+              borderRadius: '20px', 
+              fontSize: '0.75rem', 
+              fontWeight: 'bold',
+              textTransform: 'uppercase'
+            }}>
+              Owner / Developer
+            </div>
+          </div>
+
+          {/* BIO TEXT (RIGHT) */}
+          <div style={{ flex: 1 }}>
+            <h3 style={{ fontSize: '2rem', margin: '0 0 15px 0', color: '#3b82f6' }}>Meet the Creator</h3>
+            <p style={{ fontSize: '1.1rem', lineHeight: '1.6', color: '#9ca3af' }}>
+              Hey, I'm <strong>caackee</strong>. I'm a developer and the founder of the Quickdrop Network. 
+              I specialize in creating custom Minecraft experiences, specialized mods, and competitive tierlist systems. 
+              Currently focused on building the most optimized 1.21.4 combat community.
+            </p>
+            <div style={{ display: 'flex', gap: '15px', marginTop: '20px' }}>
+              <div style={{ backgroundColor: '#1f232d', padding: '10px 20px', borderRadius: '10px' }}>
+                <span style={{ display: 'block', color: '#4b5563', fontSize: '0.7rem', textTransform: 'uppercase' }}>Version</span>
+                <span style={{ fontWeight: 'bold' }}>1.21.4</span>
+              </div>
+              <div style={{ backgroundColor: '#1f232d', padding: '10px 20px', borderRadius: '10px' }}>
+                <span style={{ display: 'block', color: '#4b5563', fontSize: '0.7rem', textTransform: 'uppercase' }}>Specialty</span>
+                <span style={{ fontWeight: 'bold' }}>Skript / Fabric</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </main>
 
       <style jsx global>{`
         body { 
