@@ -25,7 +25,6 @@ export default function Home() {
       {/* NAVBAR */}
       <nav className="navbar">
         <div className="nav-container">
-          {/* LOGO SECTION - Now expanded to the left */}
           <div className="nav-left">
             <h1 className="logo-text">
               QUICKDROP <span className="logo-accent">NETWORK</span>
@@ -77,11 +76,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FEATURE SECTIONS */}
+        {/* FOUNDER SECTION */}
         <div className="feature-card">
           <div className="card-left">
-            <img src="https://minotar.net/helm/carinoh/120.png" alt="Carinoh" className="avatar-img" />
-            <h2 className="name-text">Carinoh</h2>
+            <img src="https://minotar.net/helm/carinoh/120.png" alt="carinoh" className="avatar-img" />
+            <h2 className="name-text">carinoh</h2>
             <div className="badge">Founder</div>
           </div>
           <div className="card-right">
@@ -92,6 +91,7 @@ export default function Home() {
           </div>
         </div>
 
+        {/* DEVELOPER SECTION */}
         <div className="feature-card">
           <div className="card-right">
             <h3 className="title-text">Mastering the <span className="logo-accent">Architecture</span></h3>
@@ -105,6 +105,7 @@ export default function Home() {
             <div className="badge dev-badge">Developer</div>
           </div>
         </div>
+
       </main>
 
       <style jsx>{`
@@ -127,27 +128,11 @@ export default function Home() {
           top: 0; 
           z-index: 100; 
         }
-        .nav-container { 
-          display: flex; 
-          align-items: center; 
-          max-width: 1400px; 
-          margin: 0 auto; 
-          padding: 0 30px; 
-        }
+        .nav-container { display: flex; align-items: center; max-width: 1400px; margin: 0 auto; padding: 0 30px; }
         
-        /* LOGO STYLING - Bigger and pushed left */
         .nav-left { flex: 1.5; text-align: left; }
-        .logo-text { 
-          font-size: 1.8rem; 
-          font-weight: 950; 
-          letter-spacing: -1px; 
-          line-height: 1;
-        }
-        .logo-accent { 
-          color: #3b82f6; 
-          font-style: italic;
-          font-weight: 900;
-        }
+        .logo-text { font-size: 1.8rem; font-weight: 950; letter-spacing: -1px; line-height: 1; }
+        .logo-accent { color: #3b82f6; font-style: italic; font-weight: 900; }
         
         .nav-center { flex: 2; display: flex; gap: 30px; justify-content: center; }
         .nav-center a { display: flex; align-items: center; gap: 8px; color: #9ca3af; text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: 0.2s; }
@@ -155,16 +140,7 @@ export default function Home() {
         
         .nav-right { flex: 1.5; display: flex; align-items: center; justify-content: flex-end; gap: 15px; }
 
-        /* SEARCH BAR */
-        .mini-search { 
-          position: relative; 
-          background: #080a0f; 
-          border: 1px solid #1f232d; 
-          border-radius: 8px; 
-          padding: 6px 12px; 
-          display: flex;
-          align-items: center;
-        }
+        .mini-search { position: relative; background: #080a0f; border: 1px solid #1f232d; border-radius: 8px; padding: 6px 12px; display: flex; align-items: center; }
         .mini-input { background: transparent; border: none; color: white; width: 130px; font-size: 0.8rem; }
         .mini-slash { background: #1f232d; padding: 0px 5px; border-radius: 4px; font-size: 0.7rem; color: #4b5563; margin-left: 5px;}
 
@@ -172,7 +148,7 @@ export default function Home() {
         .nav-socials a { color: #9ca3af; transition: 0.2s; }
         .nav-socials a:hover { color: white; }
 
-        /* CONTENT WRAPPER */
+        /* MAIN CONTENT */
         .page-wrapper { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 30px; }
 
         .staff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -181,6 +157,7 @@ export default function Home() {
         .staff-name { display: block; font-weight: 700; font-size: 1rem; }
         .staff-role { display: block; font-size: 0.7rem; color: #9ca3af; }
 
+        /* UPDATED AVATAR SIZES */
         .feature-card { 
           display: flex; 
           gap: 40px; 
@@ -190,20 +167,24 @@ export default function Home() {
           align-items: center;
           border: 1px solid #1f232d;
         }
-        .card-left { text-align: center; min-width: 150px; }
+        .card-left { text-align: center; min-width: 180px; } /* Increased min-width for larger heads */
         .card-right { flex: 1; }
-        .avatar-img { border-radius: 12px; width: 90px; margin-bottom: 10px; }
-        .name-text { font-size: 1.4rem; margin-bottom: 5px; }
-        .badge { background: #3b82f6; padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 800; display: inline-block; }
+        .avatar-img { 
+          border-radius: 12px; 
+          width: 110px; /* Increased from 90px */
+          margin-bottom: 12px; 
+          filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.2));
+        }
+        .dev-glow { filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.2)); }
+        
+        .name-text { font-size: 1.5rem; margin-bottom: 6px; font-weight: 800; }
+        .badge { background: #3b82f6; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; display: inline-block; }
         .dev-badge { background: #8b5cf6; }
         .title-text { font-size: 1.8rem; margin-bottom: 10px; font-weight: 800; }
         .bio-p { color: #9ca3af; font-size: 1rem; line-height: 1.5; }
 
-        /* MOBILE FIXES */
         @media (max-width: 950px) {
           .nav-center { display: none; }
-          .nav-left { flex: 1; }
-          .nav-right { flex: 1; }
           .staff-grid { grid-template-columns: 1fr; }
           .feature-card { flex-direction: column; text-align: center; padding: 30px; }
         }
