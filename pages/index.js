@@ -115,10 +115,10 @@ export default function Home() {
                     <FaMedal color="#94a3b8" size={24} />
                     <span className="tester-rank">#2</span>
                   </div>
-                  <img src="https://minotar.net/helm/Staff1/80.png" alt="Tester 2" className="tester-img" />
-                  <h4 className="tester-name">TesterTwo</h4>
-                  <p className="tester-bio">Consistent performance and high accuracy in reports.</p>
-                  <div className="tester-stat">Completed tests: <span className="stat-highlight">142</span></div>
+                  <img src="https://minotar.net/helm/Carinoh/80.png" alt="Carinoh" className="tester-img" />
+                  <h4 className="tester-name">Carinoh</h4>
+                  <p className="tester-bio">Outstanding performance in tests and tickets.</p>
+                  <div className="tester-stat">Completed tests: <span className="stat-highlight">56</span></div>
                 </div>
 
                 {/* RANK #1 */}
@@ -139,10 +139,10 @@ export default function Home() {
                     <FaMedal color="#cd7f32" size={24} />
                     <span className="tester-rank">#3</span>
                   </div>
-                  <img src="https://minotar.net/helm/Staff3/80.png" alt="Tester 3" className="tester-img" />
-                  <h4 className="tester-name">TesterThree</h4>
+                  <img src="https://minotar.net/helm/ItzStormzy_/80.png" alt="ItzStormzy_" className="tester-img" />
+                  <h4 className="tester-name">ItzStormzy_</h4>
                   <p className="tester-bio">Excellent speed and focus on edge-case scenarios.</p>
-                  <div className="tester-stat">Completed tests: <span className="stat-highlight">98</span></div>
+                  <div className="tester-stat">Completed tests: <span className="stat-highlight">42</span></div>
                 </div>
               </div>
             </div>
