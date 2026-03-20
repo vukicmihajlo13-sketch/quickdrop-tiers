@@ -96,13 +96,13 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* MAIN CONTENT */}
       <main className="page-wrapper">
         
         {activeTab === 'home' && (
           <>
             <h2 className="staff-heading">The Lead Staff Team</h2>
 
+            {/* FOUNDER */}
             <div className="feature-card founder-animated-glow">
               <div className="card-left">
                 <img src="https://minotar.net/helm/carinoh/120.png" alt="Carinoh" className="avatar-img" />
@@ -115,6 +115,7 @@ export default function Home() {
               </div>
             </div>
 
+            {/* LEAD DEVELOPER */}
             <div className="feature-card dev-animated-glow">
               <div className="card-right">
                 <h3 className="title-text">Mastering the <span className="logo-accent">Architecture</span></h3>
@@ -124,6 +125,19 @@ export default function Home() {
                 <img src="https://minotar.net/helm/Caackee/120.png" alt="Caackee" className="avatar-img" />
                 <h2 className="name-text">Caackee</h2>
                 <div className="badge dev-badge"> Lead Developer</div>
+              </div>
+            </div>
+
+            {/* NEW STAFF: ignStormz with PINK GLOW */}
+            <div className="feature-card stormz-animated-glow">
+              <div className="card-left">
+                <img src="https://minotar.net/helm/ignStormz/120.png" alt="ignStormz" className="avatar-img" />
+                <h2 className="name-text">ignStormz</h2>
+                <div className="badge pink-badge"> Developer</div>
+              </div>
+              <div className="card-right">
+                <h3 className="title-text">Crafting the <span className="logo-accent">Experience</span></h3>
+                <p className="bio-p">Working alongside the lead team, ignStormz focuses on enhancing the user experience and feature set.</p>
               </div>
             </div>
 
@@ -185,7 +199,6 @@ export default function Home() {
           </>
         )}
 
-        {/* RANKINGS BRACKET WITH 3D REFRESH BUTTON ON RIGHT */}
         {activeTab === 'rankings' && (
           <div className="rankings-tab-view bracket-container">
               <div className="tab-header-flex">
@@ -204,7 +217,6 @@ export default function Home() {
           </div>
         )}
 
-        {/* QUEUE BRACKET WITH 3D REFRESH BUTTON ON RIGHT */}
         {activeTab === 'queue' && (
           <div className="rankings-tab-view bracket-container">
               <div className="tab-header-flex">
@@ -254,6 +266,13 @@ export default function Home() {
                      <span className="staff-role developer">Lead Developer</span>
                    </div>
                 </div>
+                <div className="staff-mini-card pink-border">
+                   <img src="https://minotar.net/helm/ignStormz/60.png" alt="ignStormz" className="staff-avatar" />
+                   <div className="staff-info">
+                     <span className="staff-name">ignStormz</span>
+                     <span className="staff-role pink-text">Developer</span>
+                   </div>
+                </div>
             </div>
 
             <h2 className="staff-heading sub-heading">Moderation Team</h2>
@@ -295,15 +314,16 @@ export default function Home() {
         .mini-input { background: none; border: none; color: white; font-size: 0.85rem; width: 140px; }
         .mini-slash { color: #475569; font-size: 0.8rem; font-weight: 800; background: #1f232d; padding: 1px 6px; border-radius: 4px; margin-left: 8px; }
 
+        /* PULSING ANIMATIONS */
         .founder-animated-glow { border: 1px solid #3b82f6; animation: pulse-blue 4s infinite; }
         .dev-animated-glow { border: 1px solid #8b5cf6; animation: pulse-purple 4s infinite; }
+        .stormz-animated-glow { border: 1px solid #ec4899; animation: pulse-pink 4s infinite; }
+        
         @keyframes pulse-blue { 0%, 100% { box-shadow: 0 0 5px #3b82f644; } 50% { box-shadow: 0 0 25px #3b82f688; } }
         @keyframes pulse-purple { 0%, 100% { box-shadow: 0 0 5px #8b5cf644; } 50% { box-shadow: 0 0 25px #8b5cf688; } }
+        @keyframes pulse-pink { 0%, 100% { box-shadow: 0 0 5px #ec489944; } 50% { box-shadow: 0 0 25px #ec489988; } }
 
-        /* BRACKET LAYOUT FOR REFRESH POSITIONING */
-        .bracket-container { position: relative; }
         .tab-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .bracket-right-action { display: flex; align-items: center; }
 
         /* 3D PURPLE REFRESH BUTTON */
         .3d-refresh-purple { 
@@ -329,10 +349,11 @@ export default function Home() {
 
         .page-wrapper { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 30px; }
         .staff-heading { font-size: 2.2rem; font-weight: 900; color: white; text-align: left; }
-        .feature-card { display: flex; gap: 40px; background: #11141b; padding: 40px; border-radius: 16px; align-items: center; border: 1px solid #1f232d; }
+        .feature-card { display: flex; gap: 40px; background: #11141b; padding: 40px; border-radius: 16px; align-items: center; border: 1px solid #1f232d; margin-bottom: 10px; }
         .avatar-img { border-radius: 12px; width: 110px; }
         .badge { background: #3b82f6; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; display: inline-block; }
         .dev-badge { background: #8b5cf6; }
+        .pink-badge { background: #ec4899; }
 
         .tester-podium { display: flex; justify-content: center; align-items: flex-end; gap: 20px; margin-top: 80px; }
         .tester-card { background: #11141b; border: 1px solid #1f232d; border-radius: 16px; padding: 25px; text-align: center; width: 260px; }
@@ -356,10 +377,12 @@ export default function Home() {
         .clip-btn { background: #3b82f6; color: white; padding: 10px 25px; border-radius: 10px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; }
 
         .staff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .main-staff { grid-template-columns: repeat(2, 1fr); margin-bottom: 20px; }
+        .main-staff { grid-template-columns: repeat(3, 1fr); margin-bottom: 20px; }
         .staff-mini-card { background: #11141b; padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 15px; border: 1px solid #1f232d; }
         .admin-border { border-color: #3b82f633; }
         .dev-border { border-color: #8b5cf633; }
+        .pink-border { border-color: #ec489933; }
+        .pink-text { color: #ec4899; }
         .staff-avatar { border-radius: 8px; }
         .staff-info { display: flex; flex-direction: column; }
         .staff-name { font-weight: 800; }
@@ -373,6 +396,7 @@ export default function Home() {
           .t-rank-top, .t-rank-side { transform: none; order: unset; margin-bottom: 20px; width: 100%; }
           .clip-card { flex-direction: column; text-align: center; }
           .staff-heading { text-align: center; }
+          .main-staff { grid-template-columns: 1fr; }
         }
       `}</style>
     </div>
