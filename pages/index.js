@@ -151,6 +151,19 @@ export default function Home() {
       </main>
 
       <style jsx>{`
+        /* GLOBAL RESET FOR WHITE OUTLINE */
+        :global(*) {
+          outline: none !important;
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        :global(a:focus, button:focus, input:focus) {
+          outline: none !important;
+          box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
+        }
+
         .container { background-color: #0b0d12; min-height: 100vh; color: white; font-family: 'Inter', sans-serif; }
         .navbar { padding: 25px 0; background-color: #11141b; border-bottom: 1px solid #1f232d; position: sticky; top: 0; z-index: 100; }
         .nav-container { display: flex; align-items: center; max-width: 1400px; margin: 0 auto; padding: 0 30px; }
@@ -182,11 +195,6 @@ export default function Home() {
         .clip-badge { background: rgba(59, 130, 246, 0.15); color: #3b82f6; padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
         .clip-title { font-weight: 900; font-size: 1.3rem; color: white; margin: 0; }
         .clip-description { font-size: 1rem; color: #cbd5e1; margin-top: 6px; }
-
-        /* REMOVE WHITE OUTLINE AND ADD GLOWS */
-        *:focus { outline: none !important; box-shadow: 0 0 8px 2px rgba(59, 130, 246, 0.5); transition: box-shadow 0.2s ease; }
-        button:focus, a:focus, input:focus, textarea:focus { outline: none !important; box-shadow: 0 0 8px 2px rgba(59, 130, 246, 0.5); }
-        .clip-link-btn:focus { box-shadow: 0 0 12px 3px rgba(59, 130, 246, 0.6); }
 
         .clip-link-btn {
           display: inline-flex;
