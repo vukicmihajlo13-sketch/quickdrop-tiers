@@ -275,6 +275,30 @@ export default function Home() {
         .staff-mini-card { background: #11141b; padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 15px; border: 1px solid #1f232d; }
         .staff-avatar { width: 45px; height: 45px; border-radius: 8px; }
         .blank-state { text-align: center; padding: 80px; border: 2px dashed #1f232d; border-radius: 20px; }
+
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 768px) {
+          .nav-container { flex-direction: column; gap: 15px; padding: 15px; text-align: center; }
+          .nav-center { gap: 15px; flex-wrap: wrap; order: 2; }
+          .nav-right { justify-content: center; width: 100%; order: 3; border-top: 1px solid #1f232d; padding-top: 15px; }
+          .nav-left { order: 1; }
+          .page-wrapper { margin: 20px auto; gap: 20px; }
+          .staff-heading { font-size: 1.6rem; }
+          .feature-card { flex-direction: column; text-align: center; padding: 25px; gap: 20px; }
+          .feature-card:nth-of-type(3) { flex-direction: column-reverse; } /* Fixed stacking for Developer card */
+          .card-right { text-align: center; }
+          .tester-podium { flex-direction: column; align-items: center; gap: 20px; margin-top: 20px; }
+          .tester-card { width: 100%; max-width: 100%; }
+          .t-rank-1 { order: 1; transform: translateY(0); margin-bottom: 10px; }
+          .t-rank-2 { order: 2; }
+          .t-rank-3 { order: 3; }
+          .clip-card { flex-direction: column; text-align: center; padding: 20px; }
+          .clip-content { text-align: center; }
+          .clip-header { justify-content: center; }
+          .staff-grid { grid-template-columns: 1fr; }
+          .logo-text { font-size: 1.4rem; }
+          .avatar-img { width: 90px; }
+        }
       `}</style>
     </div>
   );
