@@ -80,14 +80,14 @@ export default function Home() {
         {/* FOUNDER */}
         <div className="feature-card">
           <div className="card-left">
-            <img src="https://minotar.net/helm/carinoh/120.png" alt="carinoh" className="avatar-img" />
-            <h2 className="name-text">carinoh</h2>
+            <img src="https://minotar.net/helm/carinoh/120.png" alt="Carinoh" className="avatar-img" />
+            <h2 className="name-text">Carinoh</h2>
             <div className="badge">Founder</div>
           </div>
           <div className="card-right">
             <h3 className="title-text">The Vision Behind <span style={{ color: '#3b82f6' }}>Quickdrop</span></h3>
             <p className="bio-p">
-              As the founder of the Quickdrop Network, <strong>carinoh</strong> is the driving force behind our community's growth and direction.
+              As the founder of the Quickdrop Network, <strong>Carinoh</strong> is the driving force behind our community's growth and direction.
             </p>
           </div>
         </div>
