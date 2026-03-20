@@ -131,8 +131,19 @@ export default function Home() {
       </main>
 
       <style jsx>{`
+        /* NUCLEAR OUTLINE RESET */
+        :global(*) {
+          outline: none !important;
+          box-shadow: none !important;
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        :global(input:focus), :global(button:focus), :global(a:focus) {
+          outline: none !important;
+          border-color: #1f232d !important;
+        }
+
         .container { background-color: #0b0d12; min-height: 100vh; color: white; font-family: 'Inter', sans-serif; }
-        * { outline: none !important; -webkit-tap-highlight-color: transparent; }
 
         .navbar { padding: 15px 40px; background-color: #11141b; border-bottom: 1px solid #1f232d; position: sticky; top: 0; z-index: 100; }
         .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1600px; margin: 0 auto; }
@@ -157,11 +168,19 @@ export default function Home() {
         .staff-role { display: block; font-size: 0.7rem; color: #3b82f6; text-transform: uppercase; font-weight: 800; }
 
         /* FEATURE CARDS */
-        .feature-card { display: flex; gap: 50px; background: #11141b; padding: 50px; border-radius: 25px; border: 1px solid #1f232d; align-items: center; }
+        .feature-card { display: flex; gap: 50px; background: #11141b; padding: 50px; border-radius: 25px; border: 1px solid #1f232d; align-items: center; position: relative; }
         .card-left { text-align: center; min-width: 200px; }
         .card-right { flex: 1; }
-        .avatar-img { border-radius: 15px; width: 110px; border: 1px solid #1f232d; box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.4); }
-        .dev-glow { box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.4); }
+        
+        .avatar-img { 
+           border-radius: 15px; 
+           width: 110px; 
+           border: 1px solid #1f232d; 
+           /* Custom Glow - avoids the "white line" issue */
+           filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.3));
+        }
+        
+        .dev-glow { filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.3)); }
         .dev-badge { background: #8b5cf6 !important; }
         .dev-stat { border-left-color: #8b5cf6 !important; }
         .name-text { font-size: 1.8rem; margin: 15px 0 5px; }
