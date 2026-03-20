@@ -220,6 +220,12 @@ export default function Home() {
         .staff-mini-card { background: #11141b; padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 15px; border: 1px solid #1f232d; }
         .staff-avatar { width: 45px; height: 45px; border-radius: 8px; }
         .blank-state { text-align: center; padding: 80px; border: 2px dashed #1f232d; border-radius: 20px; }
+
+        /* FIX white outline inside feature-card */
+        .feature-card *:focus {
+          outline: none !important;
+          box-shadow: 0 0 8px 2px rgba(59, 130, 246, 0.7); /* subtle blue glow instead */
+        }
       `}</style>
     </div>
   );
