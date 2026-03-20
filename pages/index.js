@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { FaDiscord, FaTrophy, FaHome, FaFileCode, FaChevronDown, FaYoutube } from 'react-icons/fa';
+import { FaDiscord, FaTrophy, FaHome, FaSsh, FaYoutube, FaChevronDown } from 'react-icons/fa'; // FaSsh or FaBox for Kits
 
 export default function Home() {
   const [players, setPlayers] = useState([]);
@@ -24,7 +24,7 @@ export default function Home() {
       
       {/* NAVBAR */}
       <nav style={{ 
-        padding: '20px 20px', // Reduced side padding to move logo more left
+        padding: '20px 10px', 
         backgroundColor: '#11141b', 
         borderBottom: '1px solid #1f232d',
         position: 'sticky', 
@@ -35,14 +35,14 @@ export default function Home() {
           display: 'flex', 
           alignItems: 'center', 
           justifyContent: 'space-between', 
-          maxWidth: '100%', // Changed from 1400px to 100% to allow logo to hit the edge
+          maxWidth: '100%', 
           margin: '0 auto',
           position: 'relative',
           height: '60px'
         }}>
           
-          {/* 1. LOGO (Pushed to far left) */}
-          <div style={{ zIndex: 10, flex: '0 1 auto', paddingLeft: '10px' }}>
+          {/* 1. LOGO (Far Left) */}
+          <div style={{ zIndex: 10, flex: '0 1 auto', paddingLeft: '15px' }}>
             <h1 style={{ 
               fontSize: '2.2rem', 
               fontWeight: '900', 
@@ -56,7 +56,7 @@ export default function Home() {
             </h1>
           </div>
 
-          {/* 2. CENTERED LINKS (Fixed Interactivity) */}
+          {/* 2. CENTERED LINKS (Interactable Fix) */}
           <div style={{ 
             display: 'flex', 
             gap: '35px', 
@@ -67,7 +67,7 @@ export default function Home() {
             position: 'absolute', 
             left: '50%',
             transform: 'translateX(-50%)',
-            zIndex: 20, 
+            zIndex: 50, // Higher than side containers
             whiteSpace: 'nowrap',
             pointerEvents: 'auto' 
           }}>
@@ -80,19 +80,20 @@ export default function Home() {
             <a href="https://discord.gg/EKXHuKMXT4" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <FaDiscord size={18} /> Discord
             </a>
-            <a href="/api-docs" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <FaFileCode size={16} /> API Docs
+            {/* API DOCS -> KITS */}
+            <a href="#kits" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <FaSsh size={16} /> Kits
             </a>
           </div>
 
-          {/* 3. SOCIALS (Right - YouTube) */}
-          <div style={{ display: 'flex', gap: '20px', color: '#9ca3af', zIndex: 10, flex: '0 1 auto', justifyContent: 'flex-end', paddingRight: '10px' }}>
+          {/* 3. SOCIALS (Far Right) */}
+          <div style={{ display: 'flex', gap: '20px', color: '#9ca3af', zIndex: 10, flex: '0 1 auto', justifyContent: 'flex-end', paddingRight: '20px' }}>
              <a href="https://discord.gg/EKXHuKMXT4" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}><FaDiscord size={26}/></a>
              <a href="https://youtube.com" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}><FaYoutube size={26}/></a>
           </div>
         </div>
 
-        {/* SEARCH BAR (Centered below) */}
+        {/* SEARCH BAR (Centered) */}
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '35px' }}>
           <div style={{ position: 'relative', width: '100%', maxWidth: '750px' }}>
             <input 
@@ -121,11 +122,6 @@ export default function Home() {
           </div>
         </div>
       </nav>
-
-      {/* RANKINGS TABLE SECTION */}
-      <div id="rankings" style={{ padding: '40px 20px', maxWidth: '1100px', margin: '0 auto' }}>
-          {/* Table logic here */}
-      </div>
 
       <style jsx global>{`
         body { 
