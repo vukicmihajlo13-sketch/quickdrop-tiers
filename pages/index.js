@@ -10,7 +10,6 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const searchInput = useRef(null);
 
-  // Reusable fetch logic
   const refreshData = useCallback(() => {
     if (activeTab === 'rankings' || activeTab === 'queue') {
       setLoading(true);
@@ -31,7 +30,6 @@ export default function Home() {
     }
   }, [activeTab]);
 
-  // Fetch Data based on active tab
   useEffect(() => {
     refreshData();
   }, [refreshData]);
@@ -106,7 +104,8 @@ export default function Home() {
 
             <div className="feature-card">
               <div className="card-left">
-                <img src="https://minotar.net/helm/carinoh/120.png" alt="Carinoh" className="avatar-img" />
+                {/* BLUE GLOW APPLIED TO ICON */}
+                <img src="https://minotar.net/helm/carinoh/120.png" alt="Carinoh" className="avatar-img founder-glow" />
                 <h2 className="name-text">Carinoh</h2>
                 <div className="badge"> Founder</div>
               </div>
@@ -133,6 +132,7 @@ export default function Home() {
             <div className="testers-container">
               <h2 className="staff-heading">Testers of the Month</h2>
               <div className="tester-podium">
+                {/* #2 - LEFT SIDE (Lower than #1) */}
                 <div className="tester-card t-rank-2">
                   <div className="tester-header">
                     <FaMedal color="#94a3b8" size={24} />
@@ -140,10 +140,10 @@ export default function Home() {
                   </div>
                   <img src="https://minotar.net/helm/Carinoh/80.png" alt="Carinoh" className="tester-img" />
                   <h4 className="tester-name">Carinoh</h4>
-                  <p className="tester-bio">Outstanding performance in tests and tickets.</p>
                   <div className="tester-stat">Completed tests: <span className="stat-highlight">56</span></div>
                 </div>
 
+                {/* #1 - MIDDLE (Highest) */}
                 <div className="tester-card t-rank-1">
                   <div className="tester-header">
                     <FaCrown color="#fbbf24" size={32} />
@@ -151,10 +151,10 @@ export default function Home() {
                   </div>
                   <img src="https://minotar.net/helm/Caackee/100.png" alt="Caackee" className="tester-img champion-glow" />
                   <h4 className="tester-name">Caackee</h4>
-                  <p className="tester-bio">Outstanding dedication to the community testing phase.</p>
                   <div className="tester-stat">Completed tests: <span className="stat-highlight">69</span></div>
                 </div>
 
+                {/* #3 - RIGHT SIDE (Lowest) */}
                 <div className="tester-card t-rank-3">
                   <div className="tester-header">
                     <FaMedal color="#cd7f32" size={24} />
@@ -162,7 +162,6 @@ export default function Home() {
                   </div>
                   <img src="https://minotar.net/helm/ItzStormzy_/80.png" alt="ItzStormzy_" className="tester-img" />
                   <h4 className="tester-name">ItzStormzy_</h4>
-                  <p className="tester-bio">Excellent speed and focus on edge-case scenarios.</p>
                   <div className="tester-stat">Completed tests: <span className="stat-highlight">42</span></div>
                 </div>
               </div>
@@ -253,96 +252,66 @@ export default function Home() {
       </main>
 
       <style jsx>{`
-        :global(html), :global(body) {
-          background-color: #0b0d12 !important;
-          margin: 0;
-          padding: 0;
-          min-height: 100%;
-        }
-
-        :global(*) {
-          outline: none !important;
-          box-sizing: border-box;
-        }
-
+        :global(html), :global(body) { background-color: #0b0d12 !important; margin: 0; padding: 0; min-height: 100%; }
+        :global(*) { outline: none !important; box-sizing: border-box; }
         .container { background-color: #0b0d12; min-height: 100vh; color: white; font-family: 'Inter', sans-serif; }
         .navbar { padding: 25px 0; background-color: #11141b; border-bottom: 1px solid #1f232d; position: sticky; top: 0; z-index: 100; }
         .nav-container { display: flex; align-items: center; max-width: 1400px; margin: 0 auto; padding: 0 30px; }
         .logo-text { font-size: 1.8rem; font-weight: 950; letter-spacing: -1px; }
         .logo-accent { color: #3b82f6; font-style: italic; }
-        
         .nav-center { flex: 2; display: flex; gap: 30px; justify-content: center; }
         .nav-center a { display: flex; align-items: center; gap: 8px; color: #9ca3af; text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: 0.2s; }
         .nav-center a:hover, .nav-center a.active { color: white; }
-
         .nav-right { display: flex; align-items: center; gap: 20px; }
         .mini-search { position: relative; background: #0b0d12; border: 1px solid #1f232d; border-radius: 8px; padding: 6px 12px; display: flex; align-items: center; }
         .mini-input { background: none; border: none; color: white; font-size: 0.85rem; width: 140px; }
         .mini-slash { color: #475569; font-size: 0.8rem; font-weight: 800; background: #1f232d; padding: 1px 6px; border-radius: 4px; margin-left: 8px; }
 
-        .tab-header-flex { display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 20px; }
-        .sync-btn { background: #1f232d; border: 1px solid #334155; color: #94a3b8; padding: 10px; border-radius: 8px; cursor: pointer; transition: 0.2s; position: absolute; right: 0; }
-        .sync-btn:hover { color: white; border-color: #3b82f6; background: #11141b; }
-        .syncing { animation: spin 1s linear infinite; color: #3b82f6 !important; }
+        .founder-glow { border: 2px solid #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
 
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-
-        .dev-glow { 
-          border: 2px solid #8b5cf6; 
-          box-shadow: 0 0 15px rgba(139, 92, 246, 0.3); 
-          animation: enchant-pulse 3s infinite;
-        }
-
+        .dev-glow { border: 2px solid #8b5cf6; box-shadow: 0 0 15px rgba(139, 92, 246, 0.3); animation: enchant-pulse 3s infinite; }
         @keyframes enchant-pulse {
           0% { filter: brightness(1) drop-shadow(0 0 2px #8b5cf6); }
           50% { filter: brightness(1.3) drop-shadow(0 0 10px #8b5cf6); }
           100% { filter: brightness(1) drop-shadow(0 0 2px #8b5cf6); }
         }
 
-        .queue-row { background: #11141b; border: 1px solid #1f232d; padding: 15px 25px; border-radius: 12px; display: flex; align-items: center; gap: 20px; margin-bottom: 10px; }
-        .q-pos { font-weight: 900; color: #3b82f6; font-size: 1.2rem; min-width: 40px; }
-        .q-avatar { border-radius: 4px; }
-        .q-name { font-weight: 700; flex: 1; }
-        .q-status { background: #fbbf24; color: black; font-size: 0.7rem; font-weight: 900; padding: 4px 10px; border-radius: 4px; }
-
         .page-wrapper { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 30px; }
         .staff-heading { font-size: 2.2rem; font-weight: 900; color: white; text-align: center; }
-        .sub-heading { font-size: 1.5rem; margin-top: 40px; text-align: left; border-left: 4px solid #3b82f6; padding-left: 15px; }
-
-        .feature-card { display: flex; gap: 40px; background: #11141b; padding: 40px; border-radius: 16px; align-items: center; border: 1px solid #1f232d; margin-bottom: 20px; }
+        .feature-card { display: flex; gap: 40px; background: #11141b; padding: 40px; border-radius: 16px; align-items: center; border: 1px solid #1f232d; }
         .avatar-img { border-radius: 12px; width: 110px; }
         .badge { background: #3b82f6; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; display: inline-block; }
         .dev-badge { background: #8b5cf6; }
 
+        /* ASYMMETRICAL PODIUM CSS */
+        .tester-podium { display: flex; justify-content: center; align-items: flex-start; gap: 20px; margin-top: 80px; }
+        .tester-card { background: #11141b; border: 1px solid #1f232d; border-radius: 16px; padding: 25px; text-align: center; flex: 1; max-width: 280px; }
+        .t-rank-1 { order: 2; transform: translateY(-40px); z-index: 3; }
+        .t-rank-2 { order: 1; transform: translateY(20px); z-index: 2; }
+        .t-rank-3 { order: 3; transform: translateY(80px); z-index: 1; }
+
+        .champion-glow { filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.3)); border: 2px solid #fbbf24; }
+        .tester-img { border-radius: 12px; margin-bottom: 15px; border: 1px solid #1f232d; }
+        .tester-name { font-weight: 900; }
+        .stat-highlight { color: #3b82f6; font-weight: 900; }
+
+        /* The rest of your staff and queue grid styles here... */
         .staff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .main-staff { grid-template-columns: repeat(2, 1fr); margin-bottom: 20px; }
-        .staff-mini-card { background: #11141b; padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 15px; border: 1px solid #1f232d; transition: 0.2s; }
-        .staff-mini-card:hover { border-color: #3b82f6; transform: translateY(-2px); }
+        .staff-mini-card { background: #11141b; padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 15px; border: 1px solid #1f232d; }
         .admin-border { border-color: #3b82f633; }
         .dev-border { border-color: #8b5cf633; }
         .staff-avatar { border-radius: 8px; }
         .staff-info { display: flex; flex-direction: column; }
-        .staff-name { font-weight: 800; color: white; }
+        .staff-name { font-weight: 800; }
         .staff-role { font-size: 0.7rem; font-weight: 700; color: #9ca3af; text-transform: uppercase; }
         .owner { color: #3b82f6; }
         .developer { color: #8b5cf6; }
 
-        .tester-podium { display: flex; justify-content: center; align-items: flex-end; gap: 20px; margin-top: 40px; }
-        .tester-card { background: #11141b; border: 1px solid #1f232d; border-radius: 16px; padding: 25px; text-align: center; flex: 1; max-width: 300px; }
-        .t-rank-1 { order: 2; transform: translateY(-30px); border-color: #fbbf24; }
-        .champion-glow { filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.3)); border: 2px solid #fbbf24; }
-        
         @media (max-width: 768px) {
           .nav-center { display: none; }
-          .staff-grid, .main-staff { grid-template-columns: 1fr; }
-          .feature-card { flex-direction: column; text-align: center; }
           .tester-podium { flex-direction: column; align-items: center; }
-          .t-rank-1 { order: unset; transform: none; }
-          .sync-btn { position: relative; margin-top: 10px; }
-          .tab-header-flex { flex-direction: column; }
+          .t-rank-1, .t-rank-2, .t-rank-3 { transform: none; order: unset; margin-bottom: 20px; }
         }
       `}</style>
     </div>
