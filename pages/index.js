@@ -127,10 +127,10 @@ export default function Home() {
                     <FaCrown color="#fbbf24" size={32} />
                     <span className="tester-rank rank-gold">#1</span>
                   </div>
-                  <img src="https://minotar.net/helm/Staff2/100.png" alt="Tester 1" className="tester-img champion-glow" />
-                  <h4 className="tester-name">TesterOne</h4>
+                  <img src="https://minotar.net/helm/Caackee/100.png" alt="Caackee" className="tester-img champion-glow" />
+                  <h4 className="tester-name">Caackee</h4>
                   <p className="tester-bio">Outstanding dedication to the community testing phase.</p>
-                  <div className="tester-stat">Completed tests: <span className="stat-highlight">189</span></div>
+                  <div className="tester-stat">Completed tests: <span className="stat-highlight">69</span></div>
                 </div>
 
                 {/* RANK #3 */}
