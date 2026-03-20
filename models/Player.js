@@ -1,12 +1,10 @@
 import mongoose from 'mongoose';
 
 const PlayerSchema = new mongoose.Schema({
-  username: String,
-  discordId: String,
-  tier: { type: String, default: 'Unranked' },
-  avatar: String,
-  points: { type: Number, default: 0 },
-  lastUpdated: { type: Date, default: Date.now }
-});
+  ign: { type: String, required: true, unique: true },
+  tier: { type: String, default: 'LT5' },
+  region: { type: String, default: 'NA' },
+  points: { type: Number, default: 0 }, // This is your ELO
+}, { timestamps: true });
 
 export default mongoose.models.Player || mongoose.model('Player', PlayerSchema);
