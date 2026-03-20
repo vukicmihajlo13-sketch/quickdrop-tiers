@@ -4,6 +4,8 @@ import { FaDiscord, FaTrophy, FaHome, FaShieldAlt, FaYoutube } from 'react-icons
 export default function Home() {
   const [players, setPlayers] = useState([]);
   const [search, setSearch] = useState('');
+  // New state to track which "page" we are on
+  const [activeTab, setActiveTab] = useState('home'); 
   const searchInput = useRef(null);
 
   useEffect(() => {
@@ -32,8 +34,13 @@ export default function Home() {
           </div>
 
           <div className="nav-center">
-            <a href="/"><FaHome size={16} /> Home</a>
-            <a href="#rankings"><FaTrophy size={14} /> Rankings</a>
+            {/* Added onClick events to swap views */}
+            <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('home'); }}>
+               <FaHome size={16} /> Home
+            </a>
+            <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('rankings'); }}>
+               <FaTrophy size={14} /> Rankings
+            </a>
             <a href="https://discord.gg/EKXHuKMXT4" target="_blank" rel="noreferrer"><FaDiscord size={16} /> Discord</a>
             <a href="#kits"><FaShieldAlt size={14} /> Kits</a>
           </div>
@@ -61,50 +68,61 @@ export default function Home() {
       {/* MAIN CONTENT */}
       <main className="page-wrapper">
         
-        {/* STAFF MEMBERS GRID */}
-        <section className="staff-section">
-          <div className="staff-grid">
-            {['Staff1', 'Staff2', 'Staff3'].map((staff) => (
-              <div key={staff} className="staff-mini-card">
-                <img src={`https://minotar.net/helm/${staff}/60.png`} alt={staff} className="staff-avatar" />
-                <div className="staff-info">
-                  <span className="staff-name">{staff}</span>
-                  <span className="staff-role">Moderator</span>
-                </div>
+        {/* Only show this content if activeTab is 'home' */}
+        {activeTab === 'home' ? (
+          <>
+            {/* STAFF MEMBERS GRID */}
+            <section className="staff-section">
+              <div className="staff-grid">
+                {['Staff1', 'Staff2', 'Staff3'].map((staff) => (
+                  <div key={staff} className="staff-mini-card">
+                    <img src={`https://minotar.net/helm/${staff}/60.png`} alt={staff} className="staff-avatar" />
+                    <div className="staff-info">
+                      <span className="staff-name">{staff}</span>
+                      <span className="staff-role">Moderator</span>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </section>
+            </section>
 
-        {/* FOUNDER SECTION */}
-        <div className="feature-card">
-          <div className="card-left">
-            <img src="https://minotar.net/helm/carinoh/120.png" alt="Carinoh" className="avatar-img" />
-            <h2 className="name-text">Carinoh</h2>
-            <div className="badge">Founder</div>
-          </div>
-          <div className="card-right">
-            <h3 className="title-text">The Vision Behind <span className="logo-accent">Quickdrop</span></h3>
-            <p className="bio-p">
-              As the founder of the Quickdrop Network, <strong>carinoh</strong> is the driving force behind our community's growth and direction.
-            </p>
-          </div>
-        </div>
+            {/* FOUNDER SECTION */}
+            <div className="feature-card">
+              <div className="card-left">
+                <img src="https://minotar.net/helm/carinoh/120.png" alt="Carinoh" className="avatar-img" />
+                <h2 className="name-text">Carinoh</h2>
+                <div className="badge">Founder</div>
+              </div>
+              <div className="card-right">
+                <h3 className="title-text">The Vision Behind <span className="logo-accent">Quickdrop</span></h3>
+                <p className="bio-p">
+                  As the founder of the Quickdrop Network, <strong>carinoh</strong> is the driving force behind our community's growth and direction.
+                </p>
+              </div>
+            </div>
 
-        {/* DEVELOPER SECTION */}
-        <div className="feature-card">
-          <div className="card-right">
-            <h3 className="title-text">Mastering the <span className="logo-accent">Architecture</span></h3>
-            <p className="bio-p">
-              Meet <strong>Caackee</strong>, the Lead Developer. He ensures the Quickdrop infrastructure is optimized and innovative.
-            </p>
+            {/* DEVELOPER SECTION */}
+            <div className="feature-card">
+              <div className="card-right">
+                <h3 className="title-text">Mastering the <span className="logo-accent">Architecture</span></h3>
+                <p className="bio-p">
+                  Meet <strong>Caackee</strong>, the Lead Developer. He ensures the Quickdrop infrastructure is optimized and innovative.
+                </p>
+              </div>
+              <div className="card-left">
+                <img src="https://minotar.net/helm/Caackee/120.png" alt="Caackee" className="avatar-img dev-glow" />
+                <h2 className="name-text">Caackee</h2>
+                <div className="badge dev-badge">Developer</div>
+              </div>
+            </div>
+          </>
+        ) : (
+          /* THIS SHOWS WHEN RANKINGS IS CLICKED (Blank for now) */
+          <div className="blank-state">
+             <h2 className="title-text">Rankings</h2>
+             <p className="bio-p">Rankings content will appear here soon...</p>
           </div>
-          <div className="card-left">
-            <img src="https://minotar.net/helm/Caackee/120.png" alt="Caackee" className="avatar-img dev-glow" />
-            <h2 className="name-text">Caackee</h2>
-            <div className="badge dev-badge">Developer</div>
-          </div>
-        </div>
+        )}
 
       </main>
 
@@ -135,7 +153,7 @@ export default function Home() {
         .logo-accent { color: #3b82f6; font-style: italic; font-weight: 900; }
         
         .nav-center { flex: 2; display: flex; gap: 30px; justify-content: center; }
-        .nav-center a { display: flex; align-items: center; gap: 8px; color: #9ca3af; text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: 0.2s; }
+        .nav-center a { display: flex; align-items: center; gap: 8px; color: #9ca3af; text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: 0.2s; cursor: pointer; }
         .nav-center a:hover { color: white; }
         
         .nav-right { flex: 1.5; display: flex; align-items: center; justify-content: flex-end; gap: 15px; }
@@ -150,6 +168,8 @@ export default function Home() {
 
         /* MAIN CONTENT */
         .page-wrapper { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 30px; }
+        
+        .blank-state { text-align: center; padding: 100px 0; border: 2px dashed #1f232d; border-radius: 20px; }
 
         .staff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .staff-mini-card { background: #11141b; padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 15px; border: 1px solid #1f232d; }
@@ -157,7 +177,6 @@ export default function Home() {
         .staff-name { display: block; font-weight: 700; font-size: 1rem; }
         .staff-role { display: block; font-size: 0.7rem; color: #9ca3af; }
 
-        /* UPDATED AVATAR SIZES */
         .feature-card { 
           display: flex; 
           gap: 40px; 
@@ -167,11 +186,11 @@ export default function Home() {
           align-items: center;
           border: 1px solid #1f232d;
         }
-        .card-left { text-align: center; min-width: 180px; } /* Increased min-width for larger heads */
+        .card-left { text-align: center; min-width: 180px; }
         .card-right { flex: 1; }
         .avatar-img { 
           border-radius: 12px; 
-          width: 110px; /* Increased from 90px */
+          width: 110px; 
           margin-bottom: 12px; 
           filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.2));
         }
