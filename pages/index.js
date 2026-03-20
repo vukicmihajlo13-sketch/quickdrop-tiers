@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { FaDiscord, FaTrophy, FaHome, FaShieldAlt, FaYoutube, FaUsers, FaGithub, FaPlayCircle, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaDiscord, FaTrophy, FaHome, FaShieldAlt, FaYoutube, FaUsers, FaGithub, FaPlayCircle, FaExternalLinkAlt, FaCrown, FaMedal } from 'react-icons/fa';
 
 export default function Home() {
   const [search, setSearch] = useState('');
@@ -104,6 +104,51 @@ export default function Home() {
 
             <div className="spacer"></div>
 
+            {/* TESTERS OF THE MONTH SECTION */}
+            <div className="testers-container">
+              <h2 className="staff-heading">Testers of the Month</h2>
+              <div className="tester-podium">
+                
+                {/* RANK #2 */}
+                <div className="tester-card t-rank-2">
+                  <div className="tester-header">
+                    <FaMedal color="#94a3b8" size={24} />
+                    <span className="tester-rank">#2</span>
+                  </div>
+                  <img src="https://minotar.net/helm/Staff1/80.png" alt="Tester 2" className="tester-img" />
+                  <h4 className="tester-name">TesterTwo</h4>
+                  <p className="tester-bio">Consistent performance and high accuracy in reports.</p>
+                  <div className="tester-stat">Completed tests: <span className="stat-highlight">142</span></div>
+                </div>
+
+                {/* RANK #1 */}
+                <div className="tester-card t-rank-1">
+                  <div className="tester-header">
+                    <FaCrown color="#fbbf24" size={32} />
+                    <span className="tester-rank rank-gold">#1</span>
+                  </div>
+                  <img src="https://minotar.net/helm/Staff2/100.png" alt="Tester 1" className="tester-img champion-glow" />
+                  <h4 className="tester-name">TesterOne</h4>
+                  <p className="tester-bio">Outstanding dedication to the community testing phase.</p>
+                  <div className="tester-stat">Completed tests: <span className="stat-highlight">189</span></div>
+                </div>
+
+                {/* RANK #3 */}
+                <div className="tester-card t-rank-3">
+                  <div className="tester-header">
+                    <FaMedal color="#cd7f32" size={24} />
+                    <span className="tester-rank">#3</span>
+                  </div>
+                  <img src="https://minotar.net/helm/Staff3/80.png" alt="Tester 3" className="tester-img" />
+                  <h4 className="tester-name">TesterThree</h4>
+                  <p className="tester-bio">Excellent speed and focus on edge-case scenarios.</p>
+                  <div className="tester-stat">Completed tests: <span className="stat-highlight">98</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="spacer"></div>
+
             <div className="clip-of-week-container">
               <h2 className="clip-heading">Clip Of The Week</h2>
               <div className="clip-card">
@@ -191,9 +236,25 @@ export default function Home() {
 
         .staff-heading { font-size: 2.2rem; font-weight: 900; color: white; margin-bottom: 20px; text-align: center; letter-spacing: -0.5px; }
         .spacer { height: 50px; }
+
+        /* TESTERS SECTION STYLES */
+        .tester-podium { display: flex; justify-content: center; align-items: flex-end; gap: 20px; margin-top: 40px; }
+        .tester-card { background: #11141b; border: 1px solid #1f232d; border-radius: 16px; padding: 25px; text-align: center; flex: 1; max-width: 300px; display: flex; flex-direction: column; align-items: center; }
+        .t-rank-1 { order: 2; transform: translateY(-30px); border-color: #fbbf24; background: linear-gradient(180deg, rgba(251, 191, 36, 0.05) 0%, #11141b 100%); }
+        .t-rank-2 { order: 1; }
+        .t-rank-3 { order: 3; }
+        .tester-header { display: flex; align-items: center; gap: 8px; margin-bottom: 15px; }
+        .tester-rank { font-weight: 900; font-size: 1.2rem; color: #94a3b8; }
+        .rank-gold { color: #fbbf24; }
+        .tester-img { border-radius: 12px; margin-bottom: 15px; }
+        .champion-glow { filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.3)); border: 2px solid #fbbf24; }
+        .tester-name { font-size: 1.3rem; font-weight: 800; margin-bottom: 8px; }
+        .tester-bio { font-size: 0.85rem; color: #9ca3af; margin-bottom: 15px; line-height: 1.4; }
+        .tester-stat { font-size: 0.9rem; font-weight: 600; color: #64748b; border-top: 1px solid #1f232d; padding-top: 12px; width: 100%; }
+        .stat-highlight { color: #3b82f6; font-weight: 800; }
+
         .clip-of-week-container { max-width: 800px; margin: 0 auto; text-align: center; }
         .clip-heading { font-size: 1.8rem; font-weight: 900; margin-bottom: 20px; color: #3b82f6; text-transform: uppercase; letter-spacing: 1.5px; }
-
         .clip-card { display: flex; align-items: center; gap: 25px; background: linear-gradient(135deg, #1e293b, #0f172a); padding: 30px; border-radius: 16px; border: 1px solid #3b82f6; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); transition: transform 0.3s ease; }
         .clip-card:hover { transform: scale(1.03); box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5); }
         .clip-icon { flex-shrink: 0; background: #3b82f6; border-radius: 50%; padding: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px #3b82f6; }
@@ -202,23 +263,8 @@ export default function Home() {
         .clip-badge { background: rgba(59, 130, 246, 0.15); color: #3b82f6; padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
         .clip-title { font-weight: 900; font-size: 1.3rem; color: white; margin: 0; }
         .clip-description { font-size: 1rem; color: #cbd5e1; margin-top: 6px; }
-
-        .clip-link-btn {
-          display: inline-flex;
-          align-items: center;
-          background: #3b82f6;
-          color: white;
-          text-decoration: none;
-          padding: 12px 26px;
-          border-radius: 12px;
-          font-weight: 700;
-          margin-top: 18px;
-          font-size: 1rem;
-          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
-          transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        }
+        .clip-link-btn { display: inline-flex; align-items: center; background: #3b82f6; color: white; text-decoration: none; padding: 12px 26px; border-radius: 12px; font-weight: 700; margin-top: 18px; font-size: 1rem; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5); transition: background-color 0.3s ease, box-shadow 0.3s ease; }
         .clip-link-btn:hover { background: #2563eb; }
-
         .feature-card { display: flex; gap: 40px; background: #11141b; padding: 40px; border-radius: 16px; align-items: center; border: 1px solid #1f232d; }
         .avatar-img { border-radius: 12px; width: 110px; margin-bottom: 12px; filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.2)); }
         .badge { background: #3b82f6; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; display: inline-block; }
