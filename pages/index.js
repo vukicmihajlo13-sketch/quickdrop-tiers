@@ -26,25 +26,25 @@ export default function Home() {
       <nav className="navbar">
         <div className="nav-container">
           
-          {/* LOGO */}
-          <div className="logo-box">
+          {/* 1. LOGO */}
+          <div className="nav-left">
             <h1 className="logo-text">
               QUICKDROP <span style={{ color: '#3b82f6' }}>NETWORK</span>
             </h1>
           </div>
 
-          {/* CENTER LINKS */}
-          <div className="nav-links">
-            <a href="/"><FaHome size={14} /> Home</a>
+          {/* 2. CENTER LINKS */}
+          <div className="nav-center">
+            <a href="/"><FaHome size={16} /> Home</a>
             <a href="#rankings"><FaTrophy size={14} /> Rankings</a>
-            <a href="https://discord.gg/EKXHuKMXT4" target="_blank" rel="noreferrer"><FaDiscord size={15} /> Discord</a>
+            <a href="https://discord.gg/EKXHuKMXT4" target="_blank" rel="noreferrer"><FaDiscord size={16} /> Discord</a>
             <a href="#kits"><FaShieldAlt size={14} /> Kits</a>
-            <a href="#"><FaFileAlt size={13} /> API Docs</a>
+            <a href="#"><FaFileAlt size={14} /> API Docs</a>
           </div>
 
-          {/* SOCIALS & SEARCH (PC ONLY RIGHT ALIGN) */}
+          {/* 3. SEARCH & SOCIALS */}
           <div className="nav-right">
-             <div className="search-mini">
+             <div className="mini-search">
                 <input 
                   ref={searchInput}
                   type="text" 
@@ -55,43 +55,45 @@ export default function Home() {
                 />
                 <span className="mini-slash">/</span>
              </div>
-             <div className="social-icons">
-               <a href="https://discord.gg/EKXHuKMXT4" target="_blank" rel="noreferrer"><FaDiscord size={20}/></a>
-               <a href="https://www.youtube.com/@QuickdropTierlist" target="_blank" rel="noreferrer"><FaYoutube size={20}/></a>
+             <div className="nav-socials">
+               <a href="https://discord.gg/EKXHuKMXT4" target="_blank" rel="noreferrer"><FaDiscord size={22}/></a>
+               <a href="https://www.youtube.com/@QuickdropTierlist" target="_blank" rel="noreferrer"><FaYoutube size={22}/></a>
              </div>
           </div>
         </div>
       </nav>
 
-      {/* FOUNDER FEATURE SECTION */}
-      <main className="main-content">
-        <div className="founder-card-container">
-          <div className="founder-card-profile">
+      {/* FOUNDER SECTION */}
+      <main className="page-wrapper">
+        <div className="founder-card">
+          {/* Avatar side */}
+          <div className="founder-left">
             <img 
               src="https://minotar.net/helm/carinoh/120.png" 
               alt="carinoh" 
-              className="founder-avatar"
+              className="avatar-img"
             />
-            <h2 className="founder-name">carinoh</h2>
-            <div className="founder-badge">Founder</div>
+            <h2 className="name-text">carinoh</h2>
+            <div className="badge">Founder</div>
           </div>
 
-          <div className="founder-bio">
-            <h3 className="founder-title">
+          {/* Bio side */}
+          <div className="founder-right">
+            <h3 className="title-text">
               The Vision Behind <span style={{ color: '#3b82f6' }}>Quickdrop</span>
             </h3>
-            <p className="founder-p">
-              As the founder of the Quickdrop Network, <strong>carinoh</strong> is the driving force behind our community's growth and direction.
+            <p className="bio-p">
+              As the founder of the Quickdrop Network, <strong>carinoh</strong> is the driving force behind our community's growth and direction. With a focus on high-tier competitive play, he has built an environment where the best players thrive.
             </p>
             
-            <div className="founder-stats">
-              <div className="stat-box">
-                <span className="stat-label">Established</span>
-                <span className="stat-value">Network Leadership</span>
+            <div className="stats-row">
+              <div className="stat">
+                <span className="label">Established</span>
+                <span className="value">Network Leadership</span>
               </div>
-              <div className="stat-box">
-                <span className="stat-label">Focus</span>
-                <span className="stat-value">Community Expansion</span>
+              <div className="stat">
+                <span className="label">Focus</span>
+                <span className="value">Community Expansion</span>
               </div>
             </div>
           </div>
@@ -99,9 +101,10 @@ export default function Home() {
       </main>
 
       <style jsx>{`
+        /* NAVBAR DESKTOP */
         .navbar {
-          padding: 12px 24px;
-          background-color: #0b0d12;
+          padding: 15px 40px;
+          background-color: #11141b;
           border-bottom: 1px solid #1f232d;
           position: sticky;
           top: 0;
@@ -111,74 +114,61 @@ export default function Home() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          max-width: 1400px;
+          max-width: 1600px;
           margin: 0 auto;
-          gap: 20px;
         }
-        .logo-text { font-size: 1.2rem; font-weight: 900; letter-spacing: -0.5px; margin: 0; }
-        
-        .nav-links { 
-          display: flex; 
-          gap: 24px; 
-          align-items: center;
-          color: #9ca3af; 
-          font-size: 0.9rem; 
-          font-weight: 500;
-        }
-        .nav-links a { display: flex; align-items: center; gap: 6px; color: inherit; }
-        .nav-links a:hover { color: #fff; }
-
+        .logo-text { font-size: 1.4rem; font-weight: 900; text-transform: uppercase; margin: 0; white-space: nowrap; }
+        .nav-center { display: flex; gap: 30px; color: #9ca3af; font-weight: 600; font-size: 0.95rem; }
+        .nav-center a { display: flex; align-items: center; gap: 8px; color: inherit; }
         .nav-right { display: flex; align-items: center; gap: 20px; }
-        .social-icons { display: flex; gap: 12px; color: #9ca3af; }
+        .nav-socials { display: flex; gap: 15px; color: #9ca3af; }
 
-        /* MINI SEARCH (MCTIERS STYLE) */
-        .search-mini {
+        /* MINI SEARCH BAR */
+        .mini-search {
           position: relative;
           background: #080a0f;
           border: 1px solid #1f232d;
-          border-radius: 8px;
-          padding: 6px 12px;
-          width: 200px;
+          border-radius: 10px;
+          padding: 8px 15px;
+          width: 240px;
         }
-        .mini-input {
-          background: transparent;
-          border: none;
-          color: white;
-          font-size: 0.85rem;
-          width: 100%;
-          outline: none;
-        }
-        .mini-slash {
-          position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
-          background: #1f232d; padding: 0px 6px; border-radius: 4px; font-size: 0.7rem; color: #4b5563;
-        }
+        .mini-input { background: transparent; border: none; color: white; outline: none; width: 100%; font-size: 0.9rem; }
+        .mini-slash { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: #1f232d; padding: 2px 8px; border-radius: 5px; font-size: 0.75rem; color: #4b5563; }
 
-        /* FOUNDER SECTION */
-        .founder-card-container {
-          display: flex; gap: 40px; align-items: center; background-color: #11141b;
-          padding: 40px; border-radius: 16px; border: 1px solid #1f232d;
+        /* FOUNDER CARD PC */
+        .page-wrapper { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+        .founder-card {
+          display: flex;
+          gap: 50px;
+          background: #11141b;
+          padding: 50px;
+          border-radius: 25px;
+          border: 1px solid #1f232d;
+          align-items: center;
         }
-        .founder-avatar { border-radius: 8px; width: 100px; border: 1px solid #3b82f6; }
-        .founder-badge { background: #3b82f6; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; margin-top: 10px; text-transform: uppercase; }
-        .founder-title { font-size: 1.8rem; margin: 0 0 10px 0; }
-        .founder-stats { display: flex; gap: 30px; margin-top: 20px; }
-        .stat-box { border-left: 2px solid #3b82f6; padding-left: 16px; }
-        .stat-label { display: block; color: #4b5563; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; }
-        .stat-value { font-size: 1rem; font-weight: 600; }
+        .founder-left { text-align: center; min-width: 200px; }
+        .avatar-img { border-radius: 15px; width: 120px; box-shadow: 0 0 30px rgba(59, 130, 246, 0.3); border: 2px solid #1f232d; }
+        .name-text { font-size: 1.8rem; margin: 15px 0 5px; }
+        .badge { background: #3b82f6; display: inline-block; padding: 5px 15px; border-radius: 6px; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; }
+        
+        .founder-right { flex: 1; }
+        .title-text { font-size: 2.5rem; margin: 0 0 15px; font-weight: 800; }
+        .bio-p { color: #9ca3af; font-size: 1.15rem; line-height: 1.8; margin-bottom: 30px; }
+        .stats-row { display: flex; gap: 40px; }
+        .stat { border-left: 3px solid #3b82f6; padding-left: 20px; }
+        .label { display: block; color: #4b5563; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; }
+        .value { font-size: 1.1rem; font-weight: 700; }
 
-        /* MOBILE FIXES */
-        @media (max-width: 900px) {
-          .nav-container { flex-direction: column; gap: 12px; padding: 10px 0; }
-          .nav-links { gap: 15px; font-size: 0.8rem; flex-wrap: wrap; justify-content: center; }
-          .search-mini { width: 100%; max-width: 300px; }
-          .founder-card-container { flex-direction: column; text-align: center; }
-          .founder-stats { flex-direction: column; align-items: center; }
+        /* MOBILE OVERRIDES */
+        @media (max-width: 1100px) {
+          .nav-container { flex-direction: column; gap: 15px; }
+          .nav-center { gap: 15px; flex-wrap: wrap; justify-content: center; font-size: 0.85rem; }
+          .mini-search { width: 100%; max-width: 400px; }
+          .founder-card { flex-direction: column; text-align: center; padding: 30px; gap: 30px; }
+          .stats-row { flex-direction: column; align-items: center; gap: 20px; }
+          .stat { border-left: none; border-top: 3px solid #3b82f6; padding: 15px 0 0; width: 100%; }
+          .title-text { font-size: 1.8rem; }
         }
-      `}</style>
-
-      <style jsx global>{`
-        body { margin: 0; background-color: #0b0d12; color: white; -webkit-font-smoothing: antialiased; }
-        a { text-decoration: none; transition: 0.2s; }
       `}</style>
     </div>
   );
