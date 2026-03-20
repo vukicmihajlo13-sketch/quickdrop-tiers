@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { FaDiscord, FaTrophy, FaHome, FaShieldAlt, FaYoutube, FaChevronDown } from 'react-icons/fa';
+import { FaDiscord, FaTrophy, FaHome, FaShieldAlt, FaYoutube } from 'react-icons/fa';
 
 export default function Home() {
   const [players, setPlayers] = useState([]);
@@ -19,7 +19,7 @@ export default function Home() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-return (
+  return (
     <div style={{ backgroundColor: '#0b0d12', minHeight: '100vh', color: 'white', fontFamily: 'Inter, sans-serif' }}>
       
       {/* NAVBAR */}
@@ -122,20 +122,7 @@ return (
         </div>
       </nav>
 
-      {/* PLAYER FEATURE SECTION */}
-      <main style={{ maxWidth: '1100px', margin: '60px auto', padding: '0 20px' }}>
-        <div style={{ 
-          display: 'flex', 
-          gap: '40px', 
-          alignItems: 'center', 
-          backgroundColor: '#11141b', 
-          padding: '40px', 
-          borderRadius: '20px', 
-          border: '1px solid #1f232d',
-          boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
-        }}>
-          
-{/* FOUNDER FEATURE SECTION */}
+      {/* FOUNDER FEATURE SECTION */}
       <main style={{ maxWidth: '1100px', margin: '60px auto', padding: '0 20px' }}>
         <div style={{ 
           display: 'flex', 
@@ -213,14 +200,14 @@ return (
             </div>
           </div>
         </div>
-
-        <style jsx>{`
-          .founder-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-          }
-        `}</style>
       </main>
+
+      <style jsx>{`
+        .founder-card:hover {
+          transform: translateY(-5px) scale(1.02);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+      `}</style>
 
       <style jsx global>{`
         body { 
