@@ -146,10 +146,10 @@ return (
           }}>
             <img 
               src="https://minotar.net/helm/caackee/120.png" 
-              alt="caackee" 
+              alt="Carinoh" 
               style={{ borderRadius: '10px', marginBottom: '15px', boxShadow: '0 0 15px rgba(59, 130, 246, 0.5)' }} 
             />
-            <h2 style={{ margin: '0', fontSize: '1.5rem', color: '#fff' }}>caackee</h2>
+            <h2 style={{ margin: '0', fontSize: '1.5rem', color: '#fff' }}>Carinoh</h2>
             <div style={{ 
               display: 'inline-block', 
               marginTop: '10px', 
@@ -168,14 +168,13 @@ return (
           <div style={{ flex: 1 }}>
             <h3 style={{ fontSize: '2rem', margin: '0 0 15px 0', color: '#3b82f6' }}>Meet the Creator</h3>
             <p style={{ fontSize: '1.1rem', lineHeight: '1.6', color: '#9ca3af' }}>
-              Hey, I'm <strong>caackee</strong>. I'm a developer and the founder of the Quickdrop Network. 
-              I specialize in creating custom Minecraft experiences, specialized mods, and competitive tierlist systems. 
-              Currently focused on building the most optimized 1.21.4 combat community.
+              Hey, I'm <strong>Carinoh</strong>. I'm the founder of the Quickdrop Network. 
+              I specialize in creating fun competitive servers like Quickdrop Network. 
+              I'm currently focused on making the best tierlist.
             </p>
             <div style={{ display: 'flex', gap: '15px', marginTop: '20px' }}>
               <div style={{ backgroundColor: '#1f232d', padding: '10px 20px', borderRadius: '10px' }}>
                 <span style={{ display: 'block', color: '#4b5563', fontSize: '0.7rem', textTransform: 'uppercase' }}>Version</span>
-                <span style={{ fontWeight: 'bold' }}>1.21.4</span>
               </div>
               <div style={{ backgroundColor: '#1f232d', padding: '10px 20px', borderRadius: '10px' }}>
                 <span style={{ display: 'block', color: '#4b5563', fontSize: '0.7rem', textTransform: 'uppercase' }}>Specialty</span>
