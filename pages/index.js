@@ -22,13 +22,12 @@ export default function Home() {
   return (
     <div className="container">
       
-      {/* NAVBAR */}
       <nav className="navbar">
         <div className="nav-container">
           
           <div className="nav-left">
             <h1 className="logo-text">
-              QUICKDROP <span style={{ color: '#3b82f6' }}>NETWORK</span>
+              QUICKDROP <span>NETWORK</span>
             </h1>
           </div>
 
@@ -59,10 +58,8 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* MAIN CONTENT */}
       <main className="page-wrapper">
         
-        {/* STAFF */}
         <section className="staff-section">
           <div className="staff-grid">
             {['Staff1', 'Staff2', 'Staff3'].map((staff) => (
@@ -77,7 +74,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FOUNDER */}
         <div className="feature-card">
           <div className="card-left">
             <img src="https://minotar.net/helm/carinoh/120.png" alt="Carinoh" className="avatar-img" />
@@ -92,12 +88,11 @@ export default function Home() {
           </div>
         </div>
 
-        {/* DEVELOPER */}
         <div className="feature-card developer-section">
           <div className="card-right">
             <h3 className="title-text">Mastering the <span style={{ color: '#3b82f6' }}>Architecture</span></h3>
             <p className="bio-p">
-              Meet <strong>Caackee</strong>, the Lead Developer. He ensures the Quickdrop infrastructure is optimized and innovative.
+              Meet <strong>Caackee</strong>, the Lead Developer.
             </p>
           </div>
           <div className="card-left">
@@ -110,15 +105,14 @@ export default function Home() {
       </main>
 
       <style jsx>{`
-        /* --- FIX WHITE OUTLINE --- */
+        /* FIX WHITE OUTLINE */
         :global(html),
         :global(body) {
           margin: 0;
           padding: 0;
-          outline: none !important;
-          box-shadow: none !important;
-          border: none !important;
-          -webkit-tap-highlight-color: transparent;
+          outline: none;
+          box-shadow: none;
+          border: none;
           background: #0b0d12;
         }
 
@@ -128,8 +122,8 @@ export default function Home() {
 
         :global(*:focus),
         :global(*:focus-visible) {
-          outline: none !important;
-          box-shadow: none !important;
+          outline: none;
+          box-shadow: none;
         }
 
         .container {
@@ -149,14 +143,24 @@ export default function Home() {
         }
 
         .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; }
-        .nav-left { flex: 1; }
-        .logo-text { font-size: 1.4rem; font-weight: 900; margin: 0; white-space: nowrap; }
 
-        .nav-center { flex: 2; display: flex; gap: 40px; justify-content: center; color: #9ca3af; font-size: 0.95rem; font-weight: 600; }
-        .nav-center a { display: flex; align-items: center; gap: 8px; color: inherit; text-decoration: none; transition: 0.2s; }
+        .nav-left { flex: 1; }
+
+        .logo-text { 
+          font-size: 1.4rem; 
+          font-weight: 900; 
+          margin: 0; 
+        }
+
+        .logo-text span {
+          color: #3b82f6;
+        }
+
+        .nav-center { flex: 2; display: flex; gap: 40px; justify-content: center; color: #9ca3af; }
+        .nav-center a { display: flex; align-items: center; gap: 8px; color: inherit; text-decoration: none; }
         .nav-center a:hover { color: white; }
 
-        .nav-right { flex: 1; display: flex; align-items: center; justify-content: flex-end; gap: 20px; }
+        .nav-right { flex: 1; display: flex; justify-content: flex-end; gap: 20px; }
 
         .mini-search { 
           position: relative; 
@@ -171,42 +175,35 @@ export default function Home() {
           border-color: #3b82f6;
         }
 
-        .mini-input { background: transparent; border: none; color: white; width: 100%; font-size: 0.85rem; }
+        .mini-input { background: transparent; border: none; color: white; width: 100%; }
 
-        .mini-slash { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: #1f232d; padding: 1px 6px; border-radius: 4px; font-size: 0.7rem; color: #4b5563; }
+        .mini-slash { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: #1f232d; padding: 1px 6px; border-radius: 4px; font-size: 0.7rem; }
 
         .page-wrapper { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 60px; }
 
         .staff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .staff-mini-card { background: #11141b; padding: 12px; border-radius: 10px; display: flex; align-items: center; gap: 12px; }
+        .staff-mini-card { background: #11141b; padding: 12px; border-radius: 10px; display: flex; gap: 12px; }
 
-        .staff-avatar { width: 40px; height: 40px; border-radius: 6px; }
+        .feature-card { display: flex; gap: 40px; background: #11141b; padding: 40px; border-radius: 20px; }
 
-        .staff-name { display: block; font-weight: 700; font-size: 0.9rem; }
-        .staff-role { display: block; font-size: 0.65rem; color: #3b82f6; text-transform: uppercase; font-weight: 800; }
+        /* 🔥 DESKTOP ONLY FIX */
+        @media (min-width: 901px) {
+          .logo-text {
+            font-size: 1.9rem;
+          }
 
-        .feature-card { display: flex; gap: 40px; background: #11141b; padding: 40px; border-radius: 20px; align-items: center; }
+          .logo-text span {
+            font-size: 2.2rem;
+          }
 
-        .card-left { text-align: center; min-width: 180px; }
-        .card-right { flex: 1; }
-
-        .avatar-img { border-radius: 12px; width: 100px; }
-        .dev-glow { filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.3)); }
-
-        .name-text { font-size: 1.6rem; margin: 12px 0 5px; }
-
-        .badge { background: #3b82f6; padding: 4px 12px; border-radius: 5px; font-size: 0.7rem; font-weight: 900; }
-        .dev-badge { background: #8b5cf6; }
-
-        .title-text { font-size: 2rem; margin: 0 0 12px; font-weight: 800; }
-
-        .bio-p { color: #9ca3af; font-size: 1.05rem; line-height: 1.6; }
+          .nav-left {
+            margin-left: -40px;
+          }
+        }
 
         @media (max-width: 900px) {
-          .nav-container { flex-direction: column; gap: 15px; text-align: center; }
-          .nav-center { gap: 15px; }
-          .nav-right { justify-content: center; width: 100%; }
-          .feature-card { flex-direction: column; text-align: center; }
+          .nav-container { flex-direction: column; gap: 15px; }
+          .feature-card { flex-direction: column; }
         }
       `}</style>
     </div>
