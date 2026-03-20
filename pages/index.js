@@ -1,5 +1,5 @@
-import { useEffect, useState, useRef } from 'react';
-import { FaDiscord, FaTrophy, FaHome, FaShieldAlt, FaYoutube, FaUsers, FaGithub, FaPlayCircle, FaExternalLinkAlt, FaCrown, FaMedal, FaClock, FaCode } from 'react-icons/fa';
+import { useEffect, useState, useRef, useCallback } from 'react';
+import { FaDiscord, FaTrophy, FaHome, FaShieldAlt, FaYoutube, FaUsers, FaGithub, FaPlayCircle, FaExternalLinkAlt, FaCrown, FaMedal, FaClock, FaCode, FaSync } from 'react-icons/fa';
 import Rankings from '../components/Rankings';
 
 export default function Home() {
@@ -10,8 +10,8 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const searchInput = useRef(null);
 
-  // Fetch Data based on active tab
-  useEffect(() => {
+  // Reusable fetch logic
+  const refreshData = useCallback(() => {
     if (activeTab === 'rankings' || activeTab === 'queue') {
       setLoading(true);
       const endpoint = activeTab === 'rankings' ? '/api/Rankings' : '/api/queue';
@@ -30,6 +30,11 @@ export default function Home() {
         });
     }
   }, [activeTab]);
+
+  // Fetch Data based on active tab
+  useEffect(() => {
+    refreshData();
+  }, [refreshData]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -167,36 +172,46 @@ export default function Home() {
 
         {activeTab === 'rankings' && (
           <div className="rankings-tab-view">
-             <h2 className="staff-heading">Official Rankings</h2>
-             {loading ? (
-               <div className="loading-state">Syncing with database...</div>
-             ) : (
-               <Rankings players={filteredPlayers} />
-             )}
+              <div className="tab-header-flex">
+                <h2 className="staff-heading">Official Rankings</h2>
+                <button className={`sync-btn ${loading ? 'syncing' : ''}`} onClick={refreshData}>
+                  <FaSync />
+                </button>
+              </div>
+              {loading ? (
+                <div className="loading-state">Syncing with database...</div>
+              ) : (
+                <Rankings players={filteredPlayers} />
+              )}
           </div>
         )}
 
         {activeTab === 'queue' && (
           <div className="rankings-tab-view">
-             <h2 className="staff-heading">Live Testing Queue</h2>
-             <div className="queue-container">
-               {loading ? (
-                 <div className="loading-state">Updating queue...</div>
-               ) : queue.length > 0 ? (
-                 queue.map((q, i) => (
-                   <div key={i} className="queue-row">
-                     <span className="q-pos">#{i + 1}</span>
-                     <img src={`https://minotar.net/helm/${q.ign}/32.png`} alt={q.ign} className="q-avatar" />
-                     <span className="q-name">{q.ign}</span>
-                     <span className="q-status">WAITING</span>
-                   </div>
-                 ))
-               ) : (
-                 <div className="blank-state">
-                   <p>Queue is currently empty. Start a test in Discord!</p>
-                 </div>
-               )}
-             </div>
+              <div className="tab-header-flex">
+                <h2 className="staff-heading">Live Testing Queue</h2>
+                <button className={`sync-btn ${loading ? 'syncing' : ''}`} onClick={refreshData}>
+                  <FaSync />
+                </button>
+              </div>
+              <div className="queue-container">
+                {loading ? (
+                  <div className="loading-state">Updating queue...</div>
+                ) : queue.length > 0 ? (
+                  queue.map((q, i) => (
+                    <div key={i} className="queue-row">
+                      <span className="q-pos">#{i + 1}</span>
+                      <img src={`https://minotar.net/helm/${q.ign}/32.png`} alt={q.ign} className="q-avatar" />
+                      <span className="q-name">{q.ign}</span>
+                      <span className="q-status">WAITING</span>
+                    </div>
+                  ))
+                ) : (
+                  <div className="blank-state">
+                    <p>Queue is currently empty. Start a test in Discord!</p>
+                  </div>
+                )}
+              </div>
           </div>
         )}
 
@@ -204,19 +219,19 @@ export default function Home() {
           <div className="staff-tab-view">
             <h2 className="staff-heading">Administration</h2>
             <div className="staff-grid main-staff">
-               <div className="staff-mini-card admin-border">
-                  <img src="https://minotar.net/helm/carinoh/60.png" alt="carinoh" className="staff-avatar" />
-                  <div className="staff-info">
-                    <span className="staff-name">carinoh</span>
-                    <span className="staff-role owner">Founder</span>
-                  </div>
+                <div className="staff-mini-card admin-border">
+                   <img src="https://minotar.net/helm/carinoh/60.png" alt="carinoh" className="staff-avatar" />
+                   <div className="staff-info">
+                     <span className="staff-name">carinoh</span>
+                     <span className="staff-role owner">Founder</span>
+                   </div>
                 </div>
                 <div className="staff-mini-card dev-border">
-                  <img src="https://minotar.net/helm/Caackee/60.png" alt="Caackee" className="staff-avatar" />
-                  <div className="staff-info">
-                    <span className="staff-name">Caackee</span>
-                    <span className="staff-role developer">Lead Developer</span>
-                  </div>
+                   <img src="https://minotar.net/helm/Caackee/60.png" alt="Caackee" className="staff-avatar" />
+                   <div className="staff-info">
+                     <span className="staff-name">Caackee</span>
+                     <span className="staff-role developer">Lead Developer</span>
+                   </div>
                 </div>
             </div>
 
@@ -265,6 +280,16 @@ export default function Home() {
         .mini-input { background: none; border: none; color: white; font-size: 0.85rem; width: 140px; }
         .mini-slash { color: #475569; font-size: 0.8rem; font-weight: 800; background: #1f232d; padding: 1px 6px; border-radius: 4px; margin-left: 8px; }
 
+        .tab-header-flex { display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 20px; }
+        .sync-btn { background: #1f232d; border: 1px solid #334155; color: #94a3b8; padding: 10px; border-radius: 8px; cursor: pointer; transition: 0.2s; position: absolute; right: 0; }
+        .sync-btn:hover { color: white; border-color: #3b82f6; background: #11141b; }
+        .syncing { animation: spin 1s linear infinite; color: #3b82f6 !important; }
+
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
         .dev-glow { 
           border: 2px solid #8b5cf6; 
           box-shadow: 0 0 15px rgba(139, 92, 246, 0.3); 
@@ -284,7 +309,7 @@ export default function Home() {
         .q-status { background: #fbbf24; color: black; font-size: 0.7rem; font-weight: 900; padding: 4px 10px; border-radius: 4px; }
 
         .page-wrapper { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 30px; }
-        .staff-heading { font-size: 2.2rem; font-weight: 900; color: white; margin-bottom: 20px; text-align: center; }
+        .staff-heading { font-size: 2.2rem; font-weight: 900; color: white; text-align: center; }
         .sub-heading { font-size: 1.5rem; margin-top: 40px; text-align: left; border-left: 4px solid #3b82f6; padding-left: 15px; }
 
         .feature-card { display: flex; gap: 40px; background: #11141b; padding: 40px; border-radius: 16px; align-items: center; border: 1px solid #1f232d; margin-bottom: 20px; }
@@ -316,6 +341,8 @@ export default function Home() {
           .feature-card { flex-direction: column; text-align: center; }
           .tester-podium { flex-direction: column; align-items: center; }
           .t-rank-1 { order: unset; transform: none; }
+          .sync-btn { position: relative; margin-top: 10px; }
+          .tab-header-flex { flex-direction: column; }
         }
       `}</style>
     </div>
