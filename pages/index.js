@@ -73,27 +73,13 @@ export default function Home() {
 
       {/* MAIN CONTENT */}
       <main className="page-wrapper">
-        
+
         {activeTab === 'home' && (
           <>
-            <div className="clip-card">
-              <div className="clip-icon">
-                <FaPlayCircle size={40} color="#3b82f6" />
-              </div>
-              <div className="clip-content">
-                <div className="clip-header">
-                   <span className="clip-badge">CLIP OF THE WEEK</span>
-                   <h3 className="clip-title">{clipData.title}</h3>
-                </div>
-                <p className="clip-description">
-                  This clip was made by <strong>{clipData.creator}</strong>. {clipData.description}
-                </p>
-                <a href={clipData.link} target="_blank" rel="noreferrer" className="clip-link-btn">
-                  Click to Visit <FaExternalLinkAlt size={12} style={{marginLeft: '8px'}} />
-                </a>
-              </div>
-            </div>
+            {/* Lead Staff Team Heading */}
+            <h2 className="staff-heading">The Lead Staff Team</h2>
 
+            {/* Founder */}
             <div className="feature-card">
               <div className="card-left">
                 <img src="https://minotar.net/helm/carinoh/120.png" alt="Carinoh" className="avatar-img" />
@@ -106,6 +92,7 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Developer */}
             <div className="feature-card">
               <div className="card-right">
                 <h3 className="title-text">Mastering the <span className="logo-accent">Architecture</span></h3>
@@ -115,6 +102,31 @@ export default function Home() {
                 <img src="https://minotar.net/helm/Caackee/120.png" alt="Caackee" className="avatar-img dev-glow" />
                 <h2 className="name-text">Caackee</h2>
                 <div className="badge dev-badge">Developer</div>
+              </div>
+            </div>
+
+            {/* Spacer */}
+            <div className="spacer"></div>
+
+            {/* Clip of the Week Section */}
+            <div className="clip-of-week-container">
+              <h2 className="clip-heading">Clip Of The Week</h2>
+              <div className="clip-card">
+                <div className="clip-icon">
+                  <FaPlayCircle size={48} color="#3b82f6" />
+                </div>
+                <div className="clip-content">
+                  <div className="clip-header">
+                    <span className="clip-badge">CLIP OF THE WEEK</span>
+                    <h3 className="clip-title">{clipData.title}</h3>
+                  </div>
+                  <p className="clip-description">
+                    This clip was made by <strong>{clipData.creator}</strong>. {clipData.description}
+                  </p>
+                  <a href={clipData.link} target="_blank" rel="noreferrer" className="clip-link-btn">
+                    Click to Visit <FaExternalLinkAlt size={14} style={{ marginLeft: '8px' }} />
+                  </a>
+                </div>
               </div>
             </div>
           </>
@@ -144,20 +156,6 @@ export default function Home() {
       </main>
 
       <style jsx>{`
-        /* GLOBAL RESET & REMOVE WHITE OUTLINE */
-        :global(*) {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-          outline: none !important;
-          box-shadow: none !important;
-        }
-        :global(*:focus),
-        :global(*:focus-visible) {
-          outline: none !important;
-          box-shadow: none !important;
-        }
-
         .container { background-color: #0b0d12; min-height: 100vh; color: white; font-family: 'Inter', sans-serif; }
         .navbar { padding: 25px 0; background-color: #11141b; border-bottom: 1px solid #1f232d; position: sticky; top: 0; z-index: 100; }
         .nav-container { display: flex; align-items: center; max-width: 1400px; margin: 0 auto; padding: 0 30px; }
@@ -176,10 +174,175 @@ export default function Home() {
         .nav-socials a:hover { color: white; }
         .page-wrapper { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 30px; }
 
-        .clip-card { display: flex; align-items: center; gap: 25px; background: #11141b; padding: 30px; border-radius: 16px; border: 1px solid #1f232d; border-left: 4px solid #3b82f6; }
-        .clip-badge { background: rgba(59, 130, 246, 0.1); color: #3b82f6; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 900; }
-        .clip-link-btn { display: inline-flex; align-items: center; background: #3b82f6; color: white; text-decoration: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; margin-top: 15px; }
-        
+        /* New heading style for Lead Staff Team */
+        .staff-heading {
+          font-size: 2.2rem;
+          font-weight: 900;
+          color: white;
+          margin-bottom: 20px;
+          text-align: center;
+          letter-spacing: -0.5px;
+        }
+
+        /* Spacer between staff and clip */
+        .spacer {
+          height: 50px;
+        }
+
+        /* Clip of the Week container */
+        .clip-of-week-container {
+          max-width: 800px;
+          margin: 0 auto;
+          text-align: center;
+        }
+        .clip-heading {
+          font-size: 1.8rem;
+          font-weight: 900;
+          margin-bottom: 20px;
+          color: #3b82f6;
+          text-transform: uppercase;
+          letter-spacing: 1.5px;
+        }
+
+        .clip-card {
+          display: flex;
+          align-items: center;
+          gap: 25px;
+          background: linear-gradient(135deg, #1e293b, #0f172a);
+          padding: 30px;
+          border-radius: 16px;
+          border: 1px solid #3b82f6;
+          box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+          transition: transform 0.3s ease;
+        }
+        .clip-card:hover {
+          transform: scale(1.03);
+          box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5);
+        }
+        .clip-icon {
+          flex-shrink: 0;
+          background: #3b82f6;
+          border-radius: 50%;
+          padding: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 0 15px #3b82f6;
+        }
+        .clip-content {
+          text-align: left;
+          flex: 1;
+        }
+        .clip-header {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          margin-bottom: 8px;
+          flex-wrap: wrap;
+        }
+        .clip-badge {
+          background: rgba(59, 130, 246, 0.15);
+          color: #3b82f6;
+          padding: 6px 14px;
+          border-radius: 20px;
+          font-size: 0.75rem;
+          font-weight: 900;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+        }
+        .clip-title {
+          font-weight: 900;
+          font-size: 1.3rem;
+          color: white;
+          margin: 0;
+        }
+        .clip-description {
+          font-size: 1rem;
+          color: #cbd5e1;
+          margin-top: 6px;
+        }
+        .clip-link-btn {
+          display: inline-flex;
+          align-items: center;
+          background: #3b82f6;
+          color: white;
+          text-decoration: none;
+          padding: 12px 26px;
+          border-radius: 12px;
+          font-weight: 700;
+          margin-top: 18px;
+          font-size: 1rem;
+          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
+          transition: background-color 0.3s ease;
+        }
+        .clip-link-btn:hover {
+          background: #2563eb;
+        }
+
+        .feature-card {
+          display: flex;
+          gap: 40px;
+          background: #11141b;
+          padding: 40px;
+          border-radius: 16px;
+          align-items: center;
+          border: 1px solid #1f232d;
+        }
+        .avatar-img {
+          border-radius: 12px;
+          width: 110px;
+          margin-bottom: 12px;
+          filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.2));
+        }
+        .badge {
+          background: #3b82f6;
+          padding: 5px 12px;
+          border-radius: 6px;
+          font-size: 0.75rem;
+          font-weight: 800;
+          display: inline-block;
+        }
+        .dev-badge {
+          background: #8b5cf6;
+        }
+        .title-text {
+          font-size: 1.8rem;
+          margin-bottom: 10px;
+          font-weight: 800;
+        }
+        .bio-p {
+          color: #9ca3af;
+          line-height: 1.5;
+        }
+        .staff-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+        }
+        .staff-mini-card {
+          background: #11141b;
+          padding: 15px;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          border: 1px solid #1f232d;
+        }
+        .staff-avatar {
+          width: 45px;
+          height: 45px;
+          border-radius: 8px;
+        }
+        .blank-state {
+          text-align: center;
+          padding: 80px;
+          border: 2px dashed #1f232d;
+          border-radius: 20px;
+        }
+      `}</style>
+    </div>
+  );
+}       
         .feature-card { display: flex; gap: 40px; background: #11141b; padding: 40px; border-radius: 16px; align-items: center; border: 1px solid #1f232d; }
         .avatar-img { border-radius: 12px; width: 110px; margin-bottom: 12px; filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.2)); }
         .badge { background: #3b82f6; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; display: inline-block; }
