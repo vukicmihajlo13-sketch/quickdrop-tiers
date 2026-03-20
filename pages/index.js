@@ -9,7 +9,6 @@ export default function Home() {
   useEffect(() => {
     fetch('/api/players').then(res => res.json()).then(data => setPlayers(data));
     
-    // Shortcut for "/" key to focus search
     const handleKeyDown = (e) => {
       if (e.key === '/' && document.activeElement !== searchInput.current) {
         e.preventDefault();
@@ -23,47 +22,38 @@ export default function Home() {
   return (
     <div style={{ backgroundColor: '#0b0d12', minHeight: '100vh', color: 'white', fontFamily: 'Inter, sans-serif' }}>
       
-      {/* MCTIERS STYLE NAVBAR */}
+      {/* NAVBAR */}
       <nav style={{ 
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between', 
-        padding: '10px 40px', backgroundColor: '#11141b', borderBottom: '1px solid #1f232d',
+        padding: '20px 40px', backgroundColor: '#11141b', borderBottom: '1px solid #1f232d',
         position: 'sticky', top: 0, zIndex: 100
       }}>
-        {/* Logo Section */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
-          <h1 style={{ fontSize: '1.4rem', fontWeight: '900', letterSpacing: '-1.2px', margin: 0, cursor: 'pointer' }}>
+        {/* Top Row: Logo and Links */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', maxWidth: '1200px', margin: '0 auto' }}>
+          <h1 style={{ fontSize: '1.4rem', fontWeight: '900', letterSpacing: '-1.2px', margin: 0 }}>
             QUICKDROP <span style={{ color: '#3b82f6' }}>TIERS</span>
           </h1>
-        </div>
 
-        {/* Center Links */}
-        <div style={{ display: 'flex', gap: '25px', alignItems: 'center', color: '#9ca3af', fontWeight: '600', fontSize: '0.85rem' }}>
-          <a href="/" style={{ textDecoration: 'none', color: '#fff', display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <FaHome size={16}/> Home
-          </a>
-          <a href="#rankings" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <FaTrophy size={14}/> Rankings
-          </a>
+          <div style={{ display: 'flex', gap: '30px', alignItems: 'center', color: '#9ca3af', fontWeight: '600', fontSize: '0.9rem' }}>
+            <a href="/" style={{ textDecoration: 'none', color: '#fff', display: 'flex', alignItems: 'center', gap: '6px' }}><FaHome /> Home</a>
+            <a href="#rankings" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '6px' }}><FaTrophy /> Rankings</a>
+            
+            {/* Clickable Discord Link */}
+            <a href="https://discord.gg/EKXHuKMXT4" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <FaDiscord /> Discord
+            </a>
 
-          {/* DISCORD DROPDOWN */}
-          <div className="dropdown">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
-              <FaDiscord size={16}/> Discords <FaChevronDown size={10} />
-            </div>
-            <div className="dropdown-content">
-              <a href="https://discord.gg/yourlink" target="_blank">Main Community</a>
-              <a href="https://discord.gg/yourlink2" target="_blank">Staff Support</a>
-            </div>
+            <a href="/api-docs" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '6px' }}><FaFileCode /> API Docs</a>
           </div>
 
-          <a href="/api-docs" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <FaFileCode size={14}/> API Docs
-          </a>
+          <div style={{ display: 'flex', gap: '15px', color: '#9ca3af' }}>
+             <a href="https://discord.gg/EKXHuKMXT4" target="_blank" style={{ color: 'inherit' }}><FaDiscord size={20}/></a>
+             <a href="#" style={{ color: 'inherit' }}><FaTwitter size={20}/></a>
+          </div>
         </div>
 
-        {/* Right Section: Search & Socials */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flex: 1, justifyContent: 'flex-end' }}>
-          <div style={{ position: 'relative', width: '200px' }}>
+        {/* Bottom Row: Big Centered Search Bar */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '25px' }}>
+          <div style={{ position: 'relative', width: '100%', maxWidth: '600px' }}>
             <input 
               ref={searchInput}
               type="text" 
@@ -71,52 +61,36 @@ export default function Home() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               style={{ 
-                width: '100%', padding: '7px 15px', borderRadius: '6px', border: '1px solid #1f232d', 
-                backgroundColor: '#080a0f', color: 'white', fontSize: '0.8rem', outline: 'none' 
+                width: '100%', padding: '12px 20px', borderRadius: '10px', border: '1px solid #1f232d', 
+                backgroundColor: '#080a0f', color: 'white', fontSize: '1rem', outline: 'none',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
               }}
             />
             <div style={{ 
-              position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)',
-              backgroundColor: '#1f232d', padding: '1px 5px', borderRadius: '3px', fontSize: '0.65rem', color: '#4b5563'
+              position: 'absolute', right: '15px', top: '50%', transform: 'translateY(-50%)',
+              backgroundColor: '#1f232d', padding: '2px 8px', borderRadius: '5px', fontSize: '0.8rem', color: '#4b5563'
             }}>/</div>
-          </div>
-          
-          <div style={{ display: 'flex', gap: '15px', color: '#9ca3af' }}>
-             <a href="#" style={{ color: 'inherit' }}><FaTwitter size={18}/></a>
-             <a href="#" style={{ color: 'inherit' }}><FaDiscord size={18}/></a>
           </div>
         </div>
       </nav>
 
-      {/* STYLES FOR DROPDOWN AND HOVERS */}
-      <style jsx>{`
-        .dropdown { position: relative; display: inline-block; }
-        .dropdown-content {
-          display: none;
-          position: absolute;
-          background-color: #161a23;
-          min-width: 180px;
-          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
-          border: 1px solid #1f232d;
-          border-radius: 8px;
-          z-index: 1;
-          margin-top: 10px;
-          overflow: hidden;
-        }
-        .dropdown-content a {
-          color: #9ca3af;
-          padding: 12px 16px;
-          text-decoration: none;
-          display: block;
-          font-size: 0.8rem;
-        }
-        .dropdown-content a:hover { background-color: #1f232d; color: white; }
-        .dropdown:hover .dropdown-content { display: block; }
-        a { transition: color 0.2s; }
-        a:hover { color: #fff !important; }
-      `}</style>
+      {/* PLAYER LIST CONTENT */}
+      <div style={{ padding: '40px 20px', maxWidth: '1000px', margin: '0 auto' }}>
+        {/* Your Table Code goes here */}
+      </div>
 
-      {/* ... Rest of your Player Table code ... */}
+      {/* CRITICAL: This removes the white outline/margin from the whole page */}
+      <style jsx global>{`
+        body { 
+          margin: 0 !important; 
+          padding: 0 !important; 
+          background-color: #0b0d12;
+          overflow-x: hidden;
+        }
+        * { box-sizing: border-box; }
+        a { transition: color 0.2s; cursor: pointer; }
+        a:hover { color: #3b82f6 !important; }
+      `}</style>
     </div>
   );
 }
