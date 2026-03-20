@@ -151,7 +151,14 @@ export default function Home() {
       </main>
 
       <style jsx>{`
-        /* GLOBAL RESET FOR WHITE OUTLINE */
+        /* FIX FOR WHITE SPACE AT BOTTOM */
+        :global(html), :global(body) {
+          background-color: #0b0d12 !important;
+          margin: 0;
+          padding: 0;
+          min-height: 100%;
+        }
+
         :global(*) {
           outline: none !important;
           box-sizing: border-box;
