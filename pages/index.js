@@ -133,11 +133,11 @@ export default function Home() {
               <div className="card-left">
                 <img src="https://minotar.net/helm/ignStormz/120.png" alt="ignStormz" className="avatar-img" />
                 <h2 className="name-text">ignStormz</h2>
-                <div className="badge pink-badge"> Developer</div>
+                <div className="badge pink-badge"> Manager</div>
               </div>
               <div className="card-right">
-                <h3 className="title-text">Crafting the <span className="logo-accent">Experience</span></h3>
-                <p className="bio-p">Working alongside the lead team, ignStormz focuses on enhancing the user experience and feature set.</p>
+                <h3 className="title-text">Managing the <span className="logo-accent">Server</span></h3>
+                <p className="bio-p">Working alongside the lead team, ignStormz focuses on managing ranks,permissions and brings order.</p>
               </div>
             </div>
 
