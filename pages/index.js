@@ -144,6 +144,20 @@ export default function Home() {
       </main>
 
       <style jsx>{`
+        /* GLOBAL RESET & REMOVE WHITE OUTLINE */
+        :global(*) {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          outline: none !important;
+          box-shadow: none !important;
+        }
+        :global(*:focus),
+        :global(*:focus-visible) {
+          outline: none !important;
+          box-shadow: none !important;
+        }
+
         .container { background-color: #0b0d12; min-height: 100vh; color: white; font-family: 'Inter', sans-serif; }
         .navbar { padding: 25px 0; background-color: #11141b; border-bottom: 1px solid #1f232d; position: sticky; top: 0; z-index: 100; }
         .nav-container { display: flex; align-items: center; max-width: 1400px; margin: 0 auto; padding: 0 30px; }
