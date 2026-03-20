@@ -78,9 +78,7 @@ export default function Home() {
         {/* FOUNDER SECTION */}
         <div className="feature-card">
           <div className="card-left">
-            <div className="img-wrapper">
-              <img src="https://minotar.net/helm/carinoh/120.png" alt="carinoh" className="avatar-img" />
-            </div>
+            <img src="https://minotar.net/helm/carinoh/120.png" alt="carinoh" className="avatar-img" />
             <h2 className="name-text">carinoh</h2>
             <div className="badge">Founder</div>
           </div>
@@ -101,9 +99,7 @@ export default function Home() {
             </p>
           </div>
           <div className="card-left">
-            <div className="img-wrapper dev-wrapper">
-              <img src="https://minotar.net/helm/Caackee/120.png" alt="Caackee" className="avatar-img" />
-            </div>
+            <img src="https://minotar.net/helm/Caackee/120.png" alt="Caackee" className="avatar-img dev-glow" />
             <h2 className="name-text">Caackee</h2>
             <div className="badge dev-badge">Developer</div>
           </div>
@@ -112,29 +108,31 @@ export default function Home() {
       </main>
 
       <style jsx>{`
-        /* 1. THE ULTIMATE RESET */
         :global(*) {
           outline: none !important;
-          box-shadow: none !important;
-          border: none !important; /* Strips every single border from the page */
+          box-sizing: border-box;
           -webkit-tap-highlight-color: transparent;
         }
 
-        .container { background-color: #0b0d12; min-height: 100vh; color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .container { 
+          background-color: #0b0d12; 
+          min-height: 100vh; 
+          color: white; 
+          font-family: 'Inter', sans-serif; 
+        }
 
-        /* 2. NAVBAR - Centered without borders */
+        /* NAVBAR */
         .navbar { 
           padding: 15px 40px; 
           background-color: #11141b; 
           position: sticky; 
           top: 0; 
           z-index: 100;
-          /* Re-adding ONLY this specific border for the bottom of nav */
-          box-shadow: 0 1px 0 0 #1f232d !important; 
+          border-bottom: 1px solid #1f232d;
         }
         .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; }
         .nav-left { flex: 1; }
-        .logo-text { font-size: 1.4rem; font-weight: 900; margin: 0; white-space: nowrap; }
+        .logo-text { font-size: 1.4rem; font-weight: 900; margin: 0; }
         .nav-center { flex: 2; display: flex; gap: 40px; justify-content: center; color: #9ca3af; font-size: 0.95rem; font-weight: 600; }
         .nav-center a { display: flex; align-items: center; gap: 8px; color: inherit; text-decoration: none; }
         .nav-right { flex: 1; display: flex; align-items: center; justify-content: flex-end; gap: 20px; }
@@ -146,51 +144,53 @@ export default function Home() {
           border-radius: 10px; 
           padding: 8px 15px; 
           width: 200px;
-          box-shadow: 0 0 0 1px #1f232d !important; /* Uses shadow instead of border */
+          box-shadow: 0 0 0 1px #1f232d;
         }
-        .mini-input { background: transparent; color: white; width: 100%; font-size: 0.85rem; }
+        .mini-input { background: transparent; border: none; color: white; width: 100%; font-size: 0.85rem; }
 
         .page-wrapper { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 60px; }
 
-        /* 3. STAFF CARDS - ZERO BORDER */
-        .staff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        /* THE "EXPANDED COLOR" FIX */
+        .feature-card, .staff-mini-card {
+          background-color: #11141b;
+          border-radius: 20px;
+          border: none !important;
+          /* This creates a 2px "spread" of the background color to hide the edge artifacts */
+          box-shadow: 0 0 0 2px #11141b, 0 10px 30px rgba(0,0,0,0.5);
+          background-clip: padding-box;
+          position: relative;
+        }
+
         .staff-mini-card { 
-          background: #11141b; 
+          border-radius: 12px;
           padding: 12px; 
-          border-radius: 10px; 
           display: flex; 
           align-items: center; 
           gap: 12px;
+          box-shadow: 0 0 0 1.5px #11141b; 
         }
-        .staff-avatar { width: 40px; height: 40px; border-radius: 6px; }
-        .staff-name { display: block; font-weight: 700; font-size: 0.9rem; }
-        .staff-role { display: block; font-size: 0.65rem; color: #3b82f6; text-transform: uppercase; font-weight: 800; }
 
-        /* 4. FEATURE CARDS - THE GAP-FIX */
         .feature-card { 
           display: flex; 
           gap: 40px; 
-          background: #11141b; 
           padding: 40px; 
-          border-radius: 20px; 
-          align-items: center;
-          /* This creates a subtle outer glow instead of a hard line */
-          filter: drop-shadow(0 10px 30px rgba(0,0,0,0.4));
+          align-items: center; 
         }
+
         .card-left { text-align: center; min-width: 180px; }
         .card-right { flex: 1; }
         
-        /* IMAGE WRAPPER - Double layer to hide edges */
-        .img-wrapper {
-          display: inline-block;
-          border-radius: 12px;
-          padding: 2px;
-          background: #11141b;
-          filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.4));
+        /* IMAGE EDGE FIX */
+        .avatar-img { 
+           border-radius: 12px; 
+           width: 100px; 
+           display: block;
+           /* Spreading the image shadow slightly to avoid the white ring around heads */
+           box-shadow: 0 0 0 2px #11141b;
+           filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.4));
         }
-        .dev-wrapper { filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.4)); }
         
-        .avatar-img { border-radius: 10px; width: 100px; display: block; }
+        .dev-glow { filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4)); }
         .name-text { font-size: 1.6rem; margin: 12px 0 5px; font-weight: 800; }
         .badge { background: #3b82f6; padding: 4px 12px; border-radius: 5px; font-size: 0.7rem; font-weight: 900; }
         .dev-badge { background: #8b5cf6 !important; }
@@ -198,10 +198,8 @@ export default function Home() {
         .bio-p { color: #9ca3af; font-size: 1.05rem; line-height: 1.6; }
 
         @media (max-width: 900px) {
-          .navbar { padding: 15px 20px; }
           .nav-container { flex-direction: column; gap: 15px; }
           .nav-center { gap: 15px; }
-          .nav-right { justify-content: center; width: 100%; }
           .feature-card { flex-direction: column !important; text-align: center; padding: 30px; }
           .developer-section .card-right { order: 2; }
           .developer-section .card-left { order: 1; }
