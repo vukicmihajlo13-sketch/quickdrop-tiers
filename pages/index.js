@@ -52,7 +52,7 @@ export default function Home() {
               textTransform: 'uppercase',
               whiteSpace: 'nowrap'
             }}>
-              QUICKDROP <span style={{ color: '#3b82f6' }}>TIERS</span>
+              QUICKDROP <span style={{ color: '#3b82f6' }}>NETWORK</span>
             </h1>
           </div>
 
