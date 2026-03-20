@@ -1,14 +1,16 @@
 import { FaCrown } from 'react-icons/fa';
 
 export default function Rankings({ players = [] }) {
-  // Show anyone with a tier so the list reflects all ranked players, even at 0 points
+  // Filters to ensure any player with a Tier (including LT5) shows up
   const sortedPlayers = [...players]
-    .filter(player => player.tier && player.tier !== 'None') 
+    .filter(player => player.tier && player.tier !== 'None' && player.tier !== 'Unranked') 
     .sort((a, b) => {
-      if (b.points !== a.points) {
-        return b.points - a.points;
+      // Sort primarily by ELO points
+      if ((b.points || 0) !== (a.points || 0)) {
+        return (b.points || 0) - (a.points || 0);
       }
-      return a.ign.localeCompare(b.ign);
+      // Secondary sort by name if points are equal
+      return (a.ign || "").localeCompare(b.ign || "");
     })
     .slice(0, 100);
 
@@ -40,7 +42,7 @@ export default function Rankings({ players = [] }) {
                   <span className="p-name">{player.ign}</span>
                   <span className="p-sub">
                     <FaCrown size={10} color={isTopRank ? "#fbbf24" : "#64748b"} /> 
-                    {player.tier} <span className="p-points">({player.points} ELO)</span>
+                    {player.tier} <span className="p-points">({player.points || 0} ELO)</span>
                   </span>
                 </div>
               </div>
@@ -54,7 +56,7 @@ export default function Rankings({ players = [] }) {
               <div className="player-stats-icons">
                  {['shield', 'sword', 'axe', 'pearl', 'potion'].map((icon) => (
                    <div key={icon} className="kit-icon-group">
-                     {/* Swords are maxed out with a purple enchantment glow [cite: 2026-02-19] */}
+                     {/* Sword is maxed out with enchantment purple pulse [cite: 2026-02-19] */}
                      <div className={`kit-dot ${isHighTier ? 'ht-gold' : 'lt-silver'} ${icon === 'sword' ? 'enchanted-sword' : ''}`}></div>
                      <span className="kit-label">{icon === 'sword' ? 'MAX' : player.tier}</span>
                    </div>
@@ -69,7 +71,8 @@ export default function Rankings({ players = [] }) {
         .rankings-container { width: 100%; margin-top: 20px; }
         .rankings-list { display: flex; flex-direction: column; gap: 10px; }
         .no-players { text-align: center; padding: 40px; color: #64748b; font-style: italic; border: 1px dashed #1f232d; border-radius: 12px; }
-        .player-row { background: #11141b; border: 1px solid #1f232d; border-radius: 6px; display: flex; align-items: center; height: 65px; overflow: hidden; }
+        .player-row { background: #11141b; border: 1px solid #1f232d; border-radius: 6px; display: flex; align-items: center; height: 65px; overflow: hidden; transition: transform 0.2s; }
+        .player-row:hover { transform: scale(1.01); border-color: #3b82f633; }
         .rank-one-glow { border-color: #fbbf24; box-shadow: 0 0 15px rgba(251, 191, 36, 0.1); }
         .player-rank-box { width: 80px; height: 100%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-style: italic; font-size: 1.4rem; clip-path: polygon(0 0, 100% 0, 75% 100%, 0% 100%); margin-right: 15px; }
         .gold-bg { background: #fbbf24; color: #000; }
@@ -88,7 +91,6 @@ export default function Rankings({ players = [] }) {
         .ht-gold { background: #fbbf24; box-shadow: 0 0 5px #fbbf24; }
         .lt-silver { background: #94a3b8; }
         
-        /* Maxed sword enchantment animation [cite: 2026-02-19] */
         .enchanted-sword {
           background: #a855f7 !important;
           box-shadow: 0 0 8px #a855f7, 0 0 12px #a855f7;
