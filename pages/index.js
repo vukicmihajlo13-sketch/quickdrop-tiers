@@ -73,25 +73,13 @@ export default function Home() {
 
       {/* MAIN CONTENT */}
       <main className="page-wrapper">
+        
         {activeTab === 'home' && (
           <>
-            {/* LEAD STAFF HEADER */}
-            <h2 className="staff-header">The Lead Staff Team</h2>
+            {/* Lead Staff Team Heading */}
+            <h2 className="staff-heading">The Lead Staff Team</h2>
 
-            {/* STAFF GRID */}
-            <div className="staff-grid">
-              {['Staff1', 'Staff2', 'Staff3'].map((staff) => (
-                <div key={staff} className="staff-mini-card">
-                  <img src={`https://minotar.net/helm/${staff}/60.png`} alt={staff} className="staff-avatar" />
-                  <div className="staff-info">
-                    <span className="staff-name">{staff}</span>
-                    <span className="staff-role">Moderator</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* FOUNDER */}
+            {/* Founder Feature Card */}
             <div className="feature-card">
               <div className="card-left">
                 <img src="https://minotar.net/helm/carinoh/120.png" alt="Carinoh" className="avatar-img" />
@@ -104,7 +92,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* LEAD DEVELOPER */}
+            {/* Developer Feature Card */}
             <div className="feature-card">
               <div className="card-right">
                 <h3 className="title-text">Mastering the <span className="logo-accent">Architecture</span></h3>
@@ -117,22 +105,28 @@ export default function Home() {
               </div>
             </div>
 
-            {/* CLIP OF THE WEEK */}
-            <div className="clip-card">
-              <div className="clip-icon">
-                <FaPlayCircle size={40} color="#3b82f6" />
-              </div>
-              <div className="clip-content">
-                <div className="clip-header">
-                  <span className="clip-badge">CLIP OF THE WEEK</span>
-                  <h3 className="clip-title">{clipData.title}</h3>
+            {/* Spacer between staff and clip */}
+            <div className="spacer"></div>
+
+            {/* Clip Of The Week Section */}
+            <div className="clip-of-week-container">
+              <h2 className="clip-heading">Clip Of The Week</h2>
+              <div className="clip-card">
+                <div className="clip-icon">
+                  <FaPlayCircle size={48} color="#3b82f6" />
                 </div>
-                <p className="clip-description">
-                  This clip was made by <strong>{clipData.creator}</strong>. {clipData.description}
-                </p>
-                <a href={clipData.link} target="_blank" rel="noreferrer" className="clip-link-btn">
-                  Click to Visit <FaExternalLinkAlt size={12} style={{marginLeft: '8px'}} />
-                </a>
+                <div className="clip-content">
+                  <div className="clip-header">
+                     <span className="clip-badge">CLIP OF THE WEEK</span>
+                     <h3 className="clip-title">{clipData.title}</h3>
+                  </div>
+                  <p className="clip-description">
+                    This clip was made by <strong>{clipData.creator}</strong>. {clipData.description}
+                  </p>
+                  <a href={clipData.link} target="_blank" rel="noreferrer" className="clip-link-btn">
+                    Click to Visit <FaExternalLinkAlt size={14} style={{marginLeft: '8px'}} />
+                  </a>
+                </div>
               </div>
             </div>
           </>
@@ -180,13 +174,41 @@ export default function Home() {
         .nav-socials a:hover { color: white; }
         .page-wrapper { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 30px; }
 
-        .staff-header { font-size: 1.6rem; font-weight: 800; margin-bottom: 20px; text-align: center; color: #3b82f6; }
+        .staff-heading { font-size: 2.2rem; font-weight: 900; color: white; margin-bottom: 20px; text-align: center; letter-spacing: -0.5px; }
+        .spacer { height: 50px; }
+        .clip-of-week-container { max-width: 800px; margin: 0 auto; text-align: center; }
+        .clip-heading { font-size: 1.8rem; font-weight: 900; margin-bottom: 20px; color: #3b82f6; text-transform: uppercase; letter-spacing: 1.5px; }
 
-        .clip-card { display: flex; align-items: center; gap: 25px; background: #11141b; padding: 30px; border-radius: 16px; border: 1px solid #1f232d; border-left: 4px solid #3b82f6; }
-        .clip-badge { background: rgba(59, 130, 246, 0.1); color: #3b82f6; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 900; }
-        .clip-link-btn { display: inline-flex; align-items: center; background: #3b82f6; color: white; text-decoration: none; padding: 12px 26px; border-radius: 12px; font-weight: 700; margin-top: 18px; font-size: 1rem; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5); transition: background-color 0.3s ease; }
+        .clip-card { display: flex; align-items: center; gap: 25px; background: linear-gradient(135deg, #1e293b, #0f172a); padding: 30px; border-radius: 16px; border: 1px solid #3b82f6; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); transition: transform 0.3s ease; }
+        .clip-card:hover { transform: scale(1.03); box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5); }
+        .clip-icon { flex-shrink: 0; background: #3b82f6; border-radius: 50%; padding: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px #3b82f6; }
+        .clip-content { text-align: left; flex: 1; }
+        .clip-header { display: flex; align-items: center; gap: 15px; margin-bottom: 8px; flex-wrap: wrap; }
+        .clip-badge { background: rgba(59, 130, 246, 0.15); color: #3b82f6; padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
+        .clip-title { font-weight: 900; font-size: 1.3rem; color: white; margin: 0; }
+        .clip-description { font-size: 1rem; color: #cbd5e1; margin-top: 6px; }
+
+        /* FIXED: remove white outline and add subtle glow */
+        .clip-link-btn {
+          display: inline-flex;
+          align-items: center;
+          background: #3b82f6;
+          color: white;
+          text-decoration: none;
+          padding: 12px 26px;
+          border-radius: 12px;
+          font-weight: 700;
+          margin-top: 18px;
+          font-size: 1rem;
+          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
+          transition: background-color 0.3s ease, box-shadow 0.3s ease;
+          outline: none; /* removes default white outline */
+        }
         .clip-link-btn:hover { background: #2563eb; }
-        .clip-link-btn:focus { outline: none; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.6); border-radius: 12px; }
+        .clip-link-btn:focus {
+          outline: none; /* no white outline on focus */
+          box-shadow: 0 0 12px 3px rgba(59, 130, 246, 0.6); /* subtle blue glow */
+        }
 
         .feature-card { display: flex; gap: 40px; background: #11141b; padding: 40px; border-radius: 16px; align-items: center; border: 1px solid #1f232d; }
         .avatar-img { border-radius: 12px; width: 110px; margin-bottom: 12px; filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.2)); }
