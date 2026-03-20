@@ -89,7 +89,7 @@ export default function Home() {
           {/* 3. SOCIALS (Far Right) */}
           <div style={{ display: 'flex', gap: '20px', color: '#9ca3af', zIndex: 10, flex: '0 1 auto', justifyContent: 'flex-end', paddingRight: '20px' }}>
              <a href="https://discord.gg/EKXHuKMXT4" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}><FaDiscord size={26}/></a>
-             <a href="https://youtube.com" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}><FaYoutube size={26}/></a>
+             <a href="https://www.youtube.com/@QuickdropTierlist" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}><FaYoutube size={26}/></a>
           </div>
         </div>
 
