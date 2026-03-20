@@ -1,9 +1,9 @@
 import { FaCrown } from 'react-icons/fa';
 
 export default function Rankings({ players = [] }) {
-  // Filters out anyone with 0 points so the site stays clean
+  // Show anyone with a tier so the list reflects all ranked players, even at 0 points
   const sortedPlayers = [...players]
-    .filter(player => player.points > 0) 
+    .filter(player => player.tier && player.tier !== 'None') 
     .sort((a, b) => {
       if (b.points !== a.points) {
         return b.points - a.points;
@@ -54,8 +54,9 @@ export default function Rankings({ players = [] }) {
               <div className="player-stats-icons">
                  {['shield', 'sword', 'axe', 'pearl', 'potion'].map((icon) => (
                    <div key={icon} className="kit-icon-group">
-                     <div className={`kit-dot ${isHighTier ? 'ht-gold' : 'lt-silver'}`}></div>
-                     <span className="kit-label">{player.tier}</span>
+                     {/* Swords are maxed out with a purple enchantment glow [cite: 2026-02-19] */}
+                     <div className={`kit-dot ${isHighTier ? 'ht-gold' : 'lt-silver'} ${icon === 'sword' ? 'enchanted-sword' : ''}`}></div>
+                     <span className="kit-label">{icon === 'sword' ? 'MAX' : player.tier}</span>
                    </div>
                  ))}
               </div>
@@ -86,7 +87,20 @@ export default function Rankings({ players = [] }) {
         .kit-dot { width: 10px; height: 10px; border-radius: 50%; }
         .ht-gold { background: #fbbf24; box-shadow: 0 0 5px #fbbf24; }
         .lt-silver { background: #94a3b8; }
-        .kit-label { font-size: 0.6rem; font-weight: 900; color: #64748b; }
+        
+        /* Maxed sword enchantment animation [cite: 2026-02-19] */
+        .enchanted-sword {
+          background: #a855f7 !important;
+          box-shadow: 0 0 8px #a855f7, 0 0 12px #a855f7;
+          animation: enchant-pulse 2s infinite ease-in-out;
+        }
+        
+        @keyframes enchant-pulse {
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.3); opacity: 0.8; }
+        }
+
+        .kit-label { font-size: 0.6rem; font-weight: 900; color: #64748b; text-transform: uppercase; }
       `}</style>
     </div>
   );
