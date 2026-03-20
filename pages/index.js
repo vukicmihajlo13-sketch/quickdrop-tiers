@@ -73,13 +73,13 @@ export default function Home() {
 
       {/* MAIN CONTENT */}
       <main className="page-wrapper">
-
+        
         {activeTab === 'home' && (
           <>
             {/* Lead Staff Team Heading */}
             <h2 className="staff-heading">The Lead Staff Team</h2>
 
-            {/* Founder */}
+            {/* Founder Feature Card */}
             <div className="feature-card">
               <div className="card-left">
                 <img src="https://minotar.net/helm/carinoh/120.png" alt="Carinoh" className="avatar-img" />
@@ -92,7 +92,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Developer */}
+            {/* Developer Feature Card */}
             <div className="feature-card">
               <div className="card-right">
                 <h3 className="title-text">Mastering the <span className="logo-accent">Architecture</span></h3>
@@ -105,10 +105,10 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Spacer */}
+            {/* Spacer between staff and clip */}
             <div className="spacer"></div>
 
-            {/* Clip of the Week Section */}
+            {/* Clip Of The Week Section */}
             <div className="clip-of-week-container">
               <h2 className="clip-heading">Clip Of The Week</h2>
               <div className="clip-card">
@@ -117,14 +117,14 @@ export default function Home() {
                 </div>
                 <div className="clip-content">
                   <div className="clip-header">
-                    <span className="clip-badge">CLIP OF THE WEEK</span>
-                    <h3 className="clip-title">{clipData.title}</h3>
+                     <span className="clip-badge">CLIP OF THE WEEK</span>
+                     <h3 className="clip-title">{clipData.title}</h3>
                   </div>
                   <p className="clip-description">
                     This clip was made by <strong>{clipData.creator}</strong>. {clipData.description}
                   </p>
                   <a href={clipData.link} target="_blank" rel="noreferrer" className="clip-link-btn">
-                    Click to Visit <FaExternalLinkAlt size={14} style={{ marginLeft: '8px' }} />
+                    Click to Visit <FaExternalLinkAlt size={14} style={{marginLeft: '8px'}} />
                   </a>
                 </div>
               </div>
@@ -174,7 +174,7 @@ export default function Home() {
         .nav-socials a:hover { color: white; }
         .page-wrapper { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 30px; }
 
-        /* New heading style for Lead Staff Team */
+        /* Lead Staff Team heading */
         .staff-heading {
           font-size: 2.2rem;
           font-weight: 900;
@@ -339,20 +339,6 @@ export default function Home() {
           border: 2px dashed #1f232d;
           border-radius: 20px;
         }
-      `}</style>
-    </div>
-  );
-}       
-        .feature-card { display: flex; gap: 40px; background: #11141b; padding: 40px; border-radius: 16px; align-items: center; border: 1px solid #1f232d; }
-        .avatar-img { border-radius: 12px; width: 110px; margin-bottom: 12px; filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.2)); }
-        .badge { background: #3b82f6; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; display: inline-block; }
-        .dev-badge { background: #8b5cf6; }
-        .title-text { font-size: 1.8rem; margin-bottom: 10px; font-weight: 800; }
-        .bio-p { color: #9ca3af; line-height: 1.5; }
-        .staff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .staff-mini-card { background: #11141b; padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 15px; border: 1px solid #1f232d; }
-        .staff-avatar { width: 45px; height: 45px; border-radius: 8px; }
-        .blank-state { text-align: center; padding: 80px; border: 2px dashed #1f232d; border-radius: 20px; }
       `}</style>
     </div>
   );
