@@ -88,8 +88,10 @@ export default function Home() {
                 <span className="mini-slash">/</span>
              </div>
              <div className="nav-socials">
-                <a href="https://discord.gg/EKXHuKMXT4" target="_blank" rel="noreferrer"><FaDiscord size={20}/></a>
-                <a href="https://www.youtube.com/@QuickdropTierlist" target="_blank" rel="noreferrer"><FaYoutube size={20}/></a>
+                {/* BRANDED COLORS AND ADDED GITHUB */}
+                <a href="https://discord.gg/EKXHuKMXT4" target="_blank" rel="noreferrer" className="social-discord"><FaDiscord size={22}/></a>
+                <a href="https://www.youtube.com/@QuickdropTierlist" target="_blank" rel="noreferrer" className="social-youtube"><FaYoutube size={22}/></a>
+                <a href="https://github.com" target="_blank" rel="noreferrer" className="social-github"><FaGithub size={22}/></a>
              </div>
           </div>
         </div>
@@ -102,9 +104,9 @@ export default function Home() {
           <>
             <h2 className="staff-heading">The Lead Staff Team</h2>
 
-            <div className="feature-card">
+            <div className="feature-card founder-animated-glow">
               <div className="card-left">
-                <img src="https://minotar.net/helm/carinoh/120.png" alt="Carinoh" className="avatar-img founder-glow" />
+                <img src="https://minotar.net/helm/carinoh/120.png" alt="Carinoh" className="avatar-img" />
                 <h2 className="name-text">Carinoh</h2>
                 <div className="badge"> Founder</div>
               </div>
@@ -114,13 +116,13 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="feature-card">
+            <div className="feature-card dev-animated-glow">
               <div className="card-right">
                 <h3 className="title-text">Mastering the <span className="logo-accent">Architecture</span></h3>
                 <p className="bio-p">Meet Caackee, the Lead Developer. He ensures the Quickdrop infrastructure is optimized and safely working.</p>
               </div>
               <div className="card-left">
-                <img src="https://minotar.net/helm/Caackee/120.png" alt="Caackee" className="avatar-img dev-glow" />
+                <img src="https://minotar.net/helm/Caackee/120.png" alt="Caackee" className="avatar-img" />
                 <h2 className="name-text">Caackee</h2>
                 <div className="badge dev-badge"> Lead Developer</div>
               </div>
@@ -131,8 +133,8 @@ export default function Home() {
             <div className="testers-container">
               <h2 className="staff-heading">Testers of the Month</h2>
               <div className="tester-podium">
-                {/* #2 - SILVER GLOW ADDED */}
-                <div className="tester-card t-rank-2 silver-glow">
+                {/* #2 AND #3 ON SAME LEVEL */}
+                <div className="tester-card t-rank-side silver-glow">
                   <div className="tester-header">
                     <FaMedal color="#94a3b8" size={24} />
                     <span className="tester-rank">#2</span>
@@ -142,8 +144,8 @@ export default function Home() {
                   <div className="tester-stat">Completed tests: <span className="stat-highlight">56</span></div>
                 </div>
 
-                {/* #1 */}
-                <div className="tester-card t-rank-1">
+                {/* #1 RAISED */}
+                <div className="tester-card t-rank-top">
                   <div className="tester-header">
                     <FaCrown color="#fbbf24" size={32} />
                     <span className="tester-rank rank-gold">#1</span>
@@ -153,8 +155,7 @@ export default function Home() {
                   <div className="tester-stat">Completed tests: <span className="stat-highlight">69</span></div>
                 </div>
 
-                {/* #3 - BRONZE STYLE ADDED */}
-                <div className="tester-card t-rank-3 bronze-style">
+                <div className="tester-card t-rank-side bronze-style">
                   <div className="tester-header">
                     <FaMedal color="#cd7f32" size={24} />
                     <span className="tester-rank">#3</span>
@@ -166,7 +167,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* CLIP OF THE WEEK ADDED */}
             <div className="clip-section">
               <h2 className="clip-heading">CLIP OF THE WEEK</h2>
               <div className="clip-card">
@@ -188,12 +188,11 @@ export default function Home() {
           </>
         )}
 
-        {/* Other Tabs remain unchanged */}
         {activeTab === 'rankings' && (
           <div className="rankings-tab-view">
               <div className="tab-header-flex">
                 <h2 className="staff-heading">Official Rankings</h2>
-                <button className={`sync-btn ${loading ? 'syncing' : ''}`} onClick={refreshData}>
+                <button className={`sync-btn purple-sync ${loading ? 'syncing' : ''}`} onClick={refreshData}>
                   <FaSync />
                 </button>
               </div>
@@ -209,7 +208,7 @@ export default function Home() {
           <div className="rankings-tab-view">
               <div className="tab-header-flex">
                 <h2 className="staff-heading">Live Testing Queue</h2>
-                <button className={`sync-btn ${loading ? 'syncing' : ''}`} onClick={refreshData}>
+                <button className={`sync-btn purple-sync ${loading ? 'syncing' : ''}`} onClick={refreshData}>
                   <FaSync />
                 </button>
               </div>
@@ -282,13 +281,28 @@ export default function Home() {
         .nav-center { flex: 2; display: flex; gap: 30px; justify-content: center; }
         .nav-center a { display: flex; align-items: center; gap: 8px; color: #9ca3af; text-decoration: none; font-size: 0.95rem; font-weight: 600; }
         .nav-center a.active { color: white; }
-        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .nav-right { display: flex; align-items: center; gap: 30px; }
+        
+        /* SOCIAL ICONS COLORS & SPACING */
+        .nav-socials { display: flex; gap: 20px; align-items: center; }
+        .social-discord { color: #5865F2; }
+        .social-youtube { color: #FF0000; }
+        .social-github { color: #d1d5db; }
+
         .mini-search { position: relative; background: #0b0d12; border: 1px solid #1f232d; border-radius: 8px; padding: 6px 12px; display: flex; align-items: center; }
         .mini-input { background: none; border: none; color: white; font-size: 0.85rem; width: 140px; }
         .mini-slash { color: #475569; font-size: 0.8rem; font-weight: 800; background: #1f232d; padding: 1px 6px; border-radius: 4px; margin-left: 8px; }
 
-        .founder-glow { border: 2px solid #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
-        .dev-glow { border: 2px solid #8b5cf6; box-shadow: 0 0 15px rgba(139, 92, 246, 0.3); }
+        /* PULSING ANIMATIONS */
+        .founder-animated-glow { border: 1px solid #3b82f6; animation: pulse-blue 4s infinite; }
+        .dev-animated-glow { border: 1px solid #8b5cf6; animation: pulse-purple 4s infinite; }
+        @keyframes pulse-blue { 0%, 100% { box-shadow: 0 0 5px #3b82f644; } 50% { box-shadow: 0 0 25px #3b82f688; } }
+        @keyframes pulse-purple { 0%, 100% { box-shadow: 0 0 5px #8b5cf644; } 50% { box-shadow: 0 0 25px #8b5cf688; } }
+
+        /* PURPLE SYNC BUTTON */
+        .purple-sync { background: #8b5cf6 !important; border: none !important; color: white !important; cursor: pointer; padding: 8px; border-radius: 6px; }
+        .syncing { animation: spin 1s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
         .page-wrapper { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 30px; }
         .staff-heading { font-size: 2.2rem; font-weight: 900; color: white; text-align: center; }
@@ -297,26 +311,22 @@ export default function Home() {
         .badge { background: #3b82f6; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; display: inline-block; }
         .dev-badge { background: #8b5cf6; }
 
-        .tester-podium { display: flex; justify-content: center; align-items: flex-start; gap: 20px; margin-top: 80px; }
-        .tester-card { background: #11141b; border: 1px solid #1f232d; border-radius: 16px; padding: 25px; text-align: center; flex: 1; max-width: 280px; }
-        .t-rank-1 { order: 2; transform: translateY(-40px); z-index: 3; }
-        .t-rank-2 { order: 1; transform: translateY(20px); z-index: 2; }
-        .t-rank-3 { order: 3; transform: translateY(80px); z-index: 1; }
+        /* PODIUM ALIGNMENT */
+        .tester-podium { display: flex; justify-content: center; align-items: flex-end; gap: 20px; margin-top: 80px; }
+        .tester-card { background: #11141b; border: 1px solid #1f232d; border-radius: 16px; padding: 25px; text-align: center; width: 260px; }
+        .t-rank-top { transform: translateY(-40px); border: 2px solid #fbbf24; z-index: 3; }
+        .t-rank-side { z-index: 1; }
 
         .silver-glow { border: 2px solid #94a3b8; box-shadow: 0 0 15px rgba(148, 163, 184, 0.3); }
         .bronze-style { border-color: #cd7f32; }
-
-        .champion-glow { filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.3)); border: 2px solid #fbbf24; }
+        .champion-glow { filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.3)); border: 1px solid #fbbf24; }
         .tester-img { border-radius: 12px; margin-bottom: 15px; border: 1px solid #1f232d; }
         .tester-name { font-weight: 900; }
         .stat-highlight { color: #3b82f6; font-weight: 900; }
 
         .clip-section { margin-top: 100px; text-align: center; padding-bottom: 60px; }
         .clip-heading { font-size: 2rem; font-weight: 950; color: #3b82f6; margin-bottom: 30px; }
-        .clip-card { 
-          background: #11141b; border: 1px solid #1f232d; border-radius: 20px; max-width: 800px; 
-          margin: 0 auto; padding: 30px; display: flex; align-items: center; gap: 30px; text-align: left;
-        }
+        .clip-card { background: #11141b; border: 1px solid #1f232d; border-radius: 20px; max-width: 800px; margin: 0 auto; padding: 30px; display: flex; align-items: center; gap: 30px; text-align: left; }
         .clip-blue-circle { width: 80px; height: 80px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 20px #3b82f688; }
         .clip-badge { background: #1e293b; color: #3b82f6; font-size: 0.7rem; font-weight: 900; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px; }
         .clip-title { font-size: 1.5rem; font-weight: 900; margin-bottom: 10px; color: white; }
@@ -338,7 +348,7 @@ export default function Home() {
         @media (max-width: 768px) {
           .nav-center { display: none; }
           .tester-podium { flex-direction: column; align-items: center; }
-          .t-rank-1, .t-rank-2, .t-rank-3 { transform: none; order: unset; margin-bottom: 20px; }
+          .t-rank-top, .t-rank-side { transform: none; order: unset; margin-bottom: 20px; width: 100%; }
           .clip-card { flex-direction: column; text-align: center; }
         }
       `}</style>
