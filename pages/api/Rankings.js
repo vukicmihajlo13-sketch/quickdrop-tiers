@@ -1,9 +1,11 @@
 import { FaCrown } from 'react-icons/fa';
 
 export default function Rankings({ players = [] }) {
-  // 1. Sort by ELO (points), then by IGN (Alphabetical) if points are tied
-  // 2. Limit the list to the Top 100 players
+  // 1. Filter out players with 0 points (only show officially ranked players)
+  // 2. Sort by ELO (points), then by IGN (Alphabetical) if points are tied
+  // 3. Limit to Top 100
   const sortedPlayers = [...players]
+    .filter(player => player.points > 0) 
     .sort((a, b) => {
       if (b.points !== a.points) {
         return b.points - a.points; // Higher ELO first
@@ -15,55 +17,61 @@ export default function Rankings({ players = [] }) {
   return (
     <div className="rankings-container">
       <div className="rankings-list">
-        {sortedPlayers.map((player, index) => {
-          const rank = index + 1;
-          const isTopRank = rank === 1;
+        {sortedPlayers.length === 0 ? (
+          <div className="no-players">No players have been ranked yet.</div>
+        ) : (
+          sortedPlayers.map((player, index) => {
+            const rank = index + 1;
+            const isTopRank = rank === 1;
+            const isHighTier = player.tier.toUpperCase().startsWith('HT');
 
-          return (
-            <div key={player.ign} className={`player-row ${isTopRank ? 'rank-one-glow' : ''}`}>
-              {/* Slanted Rank Box */}
-              <div className={`player-rank-box ${isTopRank ? 'gold-bg' : 'dark-bg'}`}>
-                <span>{rank}.</span>
-              </div>
-              
-              <div className="player-identity">
-                <img 
-                  src={`https://minotar.net/helm/${player.ign}/44.png`} 
-                  alt={player.ign} 
-                  className="player-avatar-small" 
-                />
-                <div className="player-info-stack">
-                  <span className="p-name">{player.ign}</span>
-                  <span className="p-sub">
-                    <FaCrown size={10} color={isTopRank ? "#fbbf24" : "#64748b"} /> 
-                    {player.tier} <span className="p-points">({player.points} ELO)</span>
+            return (
+              <div key={player.ign} className={`player-row ${isTopRank ? 'rank-one-glow' : ''}`}>
+                {/* Slanted Rank Box */}
+                <div className={`player-rank-box ${isTopRank ? 'gold-bg' : 'dark-bg'}`}>
+                  <span>{rank}.</span>
+                </div>
+                
+                <div className="player-identity">
+                  <img 
+                    src={`https://minotar.net/helm/${player.ign}/44.png`} 
+                    alt={player.ign} 
+                    className="player-avatar-small" 
+                  />
+                  <div className="player-info-stack">
+                    <span className="p-name">{player.ign}</span>
+                    <span className="p-sub">
+                      <FaCrown size={10} color={isTopRank ? "#fbbf24" : "#64748b"} /> 
+                      {player.tier} <span className="p-points">({player.points} ELO)</span>
+                    </span>
+                  </div>
+                </div>
+
+                <div className="player-region-section">
+                  <span className={`region-badge ${player.region.toUpperCase() === 'NA' ? 'na-red' : 'eu-blue'}`}>
+                    {player.region.toUpperCase()}
                   </span>
                 </div>
-              </div>
 
-              <div className="player-region-section">
-                <span className={`region-badge ${player.region.toUpperCase() === 'NA' ? 'na-red' : 'eu-blue'}`}>
-                  {player.region.toUpperCase()}
-                </span>
+                <div className="player-stats-icons">
+                   {/* Visual representation of the kit tiers */}
+                   {['shield', 'sword', 'axe', 'pearl', 'potion'].map((icon) => (
+                     <div key={icon} className="kit-icon-group">
+                       <div className={`kit-dot ${isHighTier ? 'ht-gold' : 'lt-silver'}`}></div>
+                       <span className="kit-label">{player.tier}</span>
+                     </div>
+                   ))}
+                </div>
               </div>
-
-              <div className="player-stats-icons">
-                 {/* Visual representation of the kit tiers */}
-                 {['shield', 'sword', 'axe', 'pearl', 'potion'].map((icon) => (
-                   <div key={icon} className="kit-icon-group">
-                     <div className={`kit-dot ${player.tier.startsWith('H') ? 'ht-gold' : 'lt-silver'}`}></div>
-                     <span className="kit-label">{player.tier}</span>
-                   </div>
-                 ))}
-              </div>
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
 
       <style jsx>{`
         .rankings-container { width: 100%; margin-top: 20px; }
         .rankings-list { display: flex; flex-direction: column; gap: 10px; }
+        .no-players { text-align: center; padding: 40px; color: #64748b; font-style: italic; }
         
         .player-row { 
           background: #11141b; 
@@ -109,6 +117,11 @@ export default function Rankings({ players = [] }) {
         .ht-gold { background: #fbbf24; box-shadow: 0 0 5px #fbbf24; }
         .lt-silver { background: #94a3b8; }
         .kit-label { font-size: 0.6rem; font-weight: 900; color: #64748b; }
+
+        @media (max-width: 768px) {
+          .player-stats-icons { display: none; }
+          .player-rank-box { width: 50px; font-size: 1.1rem; }
+        }
       `}</style>
     </div>
   );
