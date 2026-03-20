@@ -137,7 +137,7 @@ export default function Home() {
               </div>
               <div className="card-right">
                 <h3 className="title-text">Managing the <span className="logo-accent">Server</span></h3>
-                <p className="bio-p">Working alongside the lead team, ignStormz focuses on managing ranks,permissions and brings order.</p>
+                <p className="bio-p">Working alongside the lead team, ignStormz focuses on managing ranks, permissions and brings order.</p>
               </div>
             </div>
 
