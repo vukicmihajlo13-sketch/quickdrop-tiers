@@ -1,10 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
-import { FaDiscord, FaTrophy, FaHome, FaShieldAlt, FaYoutube } from 'react-icons/fa';
+import { FaDiscord, FaTrophy, FaHome, FaShieldAlt, FaYoutube, FaUsers, FaGithub } from 'react-icons/fa';
 
 export default function Home() {
   const [players, setPlayers] = useState([]);
   const [search, setSearch] = useState('');
-  // New state to track which "page" we are on
   const [activeTab, setActiveTab] = useState('home'); 
   const searchInput = useRef(null);
 
@@ -34,15 +33,19 @@ export default function Home() {
           </div>
 
           <div className="nav-center">
-            {/* Added onClick events to swap views */}
             <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('home'); }}>
                <FaHome size={16} /> Home
             </a>
             <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('rankings'); }}>
                <FaTrophy size={14} /> Rankings
             </a>
-            <a href="https://discord.gg/EKXHuKMXT4" target="_blank" rel="noreferrer"><FaDiscord size={16} /> Discord</a>
-            <a href="#kits"><FaShieldAlt size={14} /> Kits</a>
+            {/* Replaced redundant Discord with Staff toggle */}
+            <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('staff'); }}>
+               <FaUsers size={16} /> Staff
+            </a>
+            <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('kits'); }}>
+               <FaShieldAlt size={14} /> Kits
+            </a>
           </div>
 
           <div className="nav-right">
@@ -58,6 +61,7 @@ export default function Home() {
                 <span className="mini-slash">/</span>
              </div>
              <div className="nav-socials">
+               <a href="https://github.com" target="_blank" rel="noreferrer"><FaGithub size={20}/></a>
                <a href="https://discord.gg/EKXHuKMXT4" target="_blank" rel="noreferrer"><FaDiscord size={20}/></a>
                <a href="https://www.youtube.com/@QuickdropTierlist" target="_blank" rel="noreferrer"><FaYoutube size={20}/></a>
              </div>
@@ -68,25 +72,8 @@ export default function Home() {
       {/* MAIN CONTENT */}
       <main className="page-wrapper">
         
-        {/* Only show this content if activeTab is 'home' */}
-        {activeTab === 'home' ? (
+        {activeTab === 'home' && (
           <>
-            {/* STAFF MEMBERS GRID */}
-            <section className="staff-section">
-              <div className="staff-grid">
-                {['Staff1', 'Staff2', 'Staff3'].map((staff) => (
-                  <div key={staff} className="staff-mini-card">
-                    <img src={`https://minotar.net/helm/${staff}/60.png`} alt={staff} className="staff-avatar" />
-                    <div className="staff-info">
-                      <span className="staff-name">{staff}</span>
-                      <span className="staff-role">Moderator</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* FOUNDER SECTION */}
             <div className="feature-card">
               <div className="card-left">
                 <img src="https://minotar.net/helm/carinoh/120.png" alt="Carinoh" className="avatar-img" />
@@ -101,7 +88,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* DEVELOPER SECTION */}
             <div className="feature-card">
               <div className="card-right">
                 <h3 className="title-text">Mastering the <span className="logo-accent">Architecture</span></h3>
@@ -116,11 +102,36 @@ export default function Home() {
               </div>
             </div>
           </>
-        ) : (
-          /* THIS SHOWS WHEN RANKINGS IS CLICKED (Blank for now) */
+        )}
+
+        {activeTab === 'staff' && (
+          <section className="staff-section">
+            <h2 className="title-text" style={{textAlign: 'center', marginBottom: '30px'}}>Our Team</h2>
+            <div className="staff-grid">
+              {['Staff1', 'Staff2', 'Staff3'].map((staff) => (
+                <div key={staff} className="staff-mini-card">
+                  <img src={`https://minotar.net/helm/${staff}/60.png`} alt={staff} className="staff-avatar" />
+                  <div className="staff-info">
+                    <span className="staff-name">{staff}</span>
+                    <span className="staff-role">Moderator</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {activeTab === 'rankings' && (
           <div className="blank-state">
              <h2 className="title-text">Rankings</h2>
-             <p className="bio-p">Rankings content will appear here soon...</p>
+             <p className="bio-p">Leaderboards are currently being synchronized with the server.</p>
+          </div>
+        )}
+
+        {activeTab === 'kits' && (
+          <div className="blank-state">
+             <h2 className="title-text">Server Kits</h2>
+             <p className="bio-p">Detailed kit information and permissions will be listed here.</p>
           </div>
         )}
 
@@ -137,7 +148,6 @@ export default function Home() {
 
         .container { background-color: #0b0d12; min-height: 100vh; color: white; font-family: 'Inter', sans-serif; }
 
-        /* NAVBAR */
         .navbar { 
           padding: 25px 0; 
           background-color: #11141b; 
@@ -166,7 +176,6 @@ export default function Home() {
         .nav-socials a { color: #9ca3af; transition: 0.2s; }
         .nav-socials a:hover { color: white; }
 
-        /* MAIN CONTENT */
         .page-wrapper { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 30px; }
         
         .blank-state { text-align: center; padding: 100px 0; border: 2px dashed #1f232d; border-radius: 20px; }
