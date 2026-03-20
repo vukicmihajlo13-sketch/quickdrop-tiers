@@ -22,12 +22,12 @@ export default function Home() {
   return (
     <div className="container">
       
+      {/* NAVBAR */}
       <nav className="navbar">
         <div className="nav-container">
-          
           <div className="nav-left">
             <h1 className="logo-text">
-              QUICKDROP <span>NETWORK</span>
+              QUICKDROP <span className="logo-accent">NETWORK</span>
             </h1>
           </div>
 
@@ -51,15 +51,17 @@ export default function Home() {
                 <span className="mini-slash">/</span>
              </div>
              <div className="nav-socials">
-               <a href="https://discord.gg/EKXHuKMXT4" target="_blank" rel="noreferrer"><FaDiscord size={22}/></a>
-               <a href="https://www.youtube.com/@QuickdropTierlist" target="_blank" rel="noreferrer"><FaYoutube size={22}/></a>
+               <a href="https://discord.gg/EKXHuKMXT4" target="_blank" rel="noreferrer"><FaDiscord size={20}/></a>
+               <a href="https://www.youtube.com/@QuickdropTierlist" target="_blank" rel="noreferrer"><FaYoutube size={20}/></a>
              </div>
           </div>
         </div>
       </nav>
 
+      {/* MAIN CONTENT */}
       <main className="page-wrapper">
         
+        {/* STAFF MEMBERS GRID */}
         <section className="staff-section">
           <div className="staff-grid">
             {['Staff1', 'Staff2', 'Staff3'].map((staff) => (
@@ -74,25 +76,27 @@ export default function Home() {
           </div>
         </section>
 
+        {/* FOUNDER SECTION */}
         <div className="feature-card">
           <div className="card-left">
-            <img src="https://minotar.net/helm/carinoh/120.png" alt="Carinoh" className="avatar-img" />
-            <h2 className="name-text">Carinoh</h2>
+            <img src="https://minotar.net/helm/carinoh/120.png" alt="carinoh" className="avatar-img" />
+            <h2 className="name-text">carinoh</h2>
             <div className="badge">Founder</div>
           </div>
           <div className="card-right">
-            <h3 className="title-text">The Vision Behind <span style={{ color: '#3b82f6' }}>Quickdrop</span></h3>
+            <h3 className="title-text">The Vision Behind <span className="logo-accent">Quickdrop</span></h3>
             <p className="bio-p">
-              As the founder of the Quickdrop Network, <strong>Carinoh</strong> is the driving force behind our community's growth and direction.
+              As the founder of the Quickdrop Network, <strong>carinoh</strong> is the driving force behind our community's growth and direction.
             </p>
           </div>
         </div>
 
-        <div className="feature-card developer-section">
+        {/* DEVELOPER SECTION */}
+        <div className="feature-card">
           <div className="card-right">
-            <h3 className="title-text">Mastering the <span style={{ color: '#3b82f6' }}>Architecture</span></h3>
+            <h3 className="title-text">Mastering the <span className="logo-accent">Architecture</span></h3>
             <p className="bio-p">
-              Meet <strong>Caackee</strong>, the Lead Developer.
+              Meet <strong>Caackee</strong>, the Lead Developer. He ensures the Quickdrop infrastructure is optimized and innovative.
             </p>
           </div>
           <div className="card-left">
@@ -105,105 +109,87 @@ export default function Home() {
       </main>
 
       <style jsx>{`
-        /* FIX WHITE OUTLINE */
-        :global(html),
-        :global(body) {
-          margin: 0;
-          padding: 0;
-          outline: none;
-          box-shadow: none;
-          border: none;
-          background: #0b0d12;
-        }
-
         :global(*) {
           box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          outline: none !important;
+          -webkit-tap-highlight-color: transparent;
         }
 
-        :global(*:focus),
-        :global(*:focus-visible) {
-          outline: none;
-          box-shadow: none;
-        }
+        .container { background-color: #0b0d12; min-height: 100vh; color: white; font-family: 'Inter', sans-serif; }
 
-        .container {
-          background-color: #0b0d12;
-          min-height: 100vh;
-          color: white;
-          font-family: 'Inter', sans-serif;
-        }
-
+        /* NAVBAR */
         .navbar { 
-          padding: 15px 40px; 
+          padding: 20px 0; 
           background-color: #11141b; 
           border-bottom: 1px solid #1f232d;
           position: sticky; 
           top: 0; 
           z-index: 100; 
         }
-
-        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; }
-
-        .nav-left { flex: 1; }
-
-        .logo-text { 
-          font-size: 1.4rem; 
-          font-weight: 900; 
-          margin: 0; 
-        }
-
-        .logo-text span {
-          color: #3b82f6;
-        }
-
-        .nav-center { flex: 2; display: flex; gap: 40px; justify-content: center; color: #9ca3af; }
-        .nav-center a { display: flex; align-items: center; gap: 8px; color: inherit; text-decoration: none; }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .logo-text { font-size: 1.3rem; font-weight: 900; letter-spacing: -0.5px; }
+        .logo-accent { color: #3b82f6; }
+        
+        .nav-center { display: flex; gap: 30px; }
+        .nav-center a { display: flex; align-items: center; gap: 8px; color: #9ca3af; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: 0.2s; }
         .nav-center a:hover { color: white; }
+        
+        .nav-right { display: flex; align-items: center; gap: 15px; }
 
-        .nav-right { flex: 1; display: flex; justify-content: flex-end; gap: 20px; }
-
+        /* SEARCH BAR */
         .mini-search { 
           position: relative; 
           background: #080a0f; 
           border: 1px solid #1f232d; 
-          border-radius: 10px; 
-          padding: 8px 15px; 
-          width: 200px;
+          border-radius: 8px; 
+          padding: 6px 12px; 
+          display: flex;
+          align-items: center;
         }
+        .mini-input { background: transparent; border: none; color: white; width: 140px; font-size: 0.8rem; }
+        .mini-slash { background: #1f232d; padding: 0px 5px; border-radius: 4px; font-size: 0.7rem; color: #4b5563; margin-left: 5px;}
 
-        .mini-search:focus-within {
-          border-color: #3b82f6;
+        .nav-socials { display: flex; gap: 12px; border-left: 1px solid #1f232d; padding-left: 15px; }
+        .nav-socials a { color: #9ca3af; transition: 0.2s; }
+        .nav-socials a:hover { color: white; }
+
+        /* CONTENT WRAPPER */
+        .page-wrapper { max-width: 1000px; margin: 40px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 30px; }
+
+        /* STAFF GRID */
+        .staff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .staff-mini-card { background: #11141b; padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 15px; border: 1px solid #1f232d; }
+        .staff-avatar { width: 45px; height: 45px; border-radius: 8px; }
+        .staff-name { display: block; font-weight: 700; font-size: 1rem; }
+        .staff-role { display: block; font-size: 0.7rem; color: #9ca3af; }
+
+        /* FEATURE CARDS */
+        .feature-card { 
+          display: flex; 
+          gap: 40px; 
+          background: #11141b; 
+          padding: 40px; 
+          border-radius: 16px; 
+          align-items: center;
+          border: 1px solid #1f232d;
         }
+        .card-left { text-align: center; min-width: 150px; }
+        .card-right { flex: 1; }
+        .avatar-img { border-radius: 12px; width: 90px; margin-bottom: 10px; }
+        .name-text { font-size: 1.4rem; margin-bottom: 5px; }
+        .badge { background: #3b82f6; padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 800; display: inline-block; }
+        .dev-badge { background: #8b5cf6; }
+        .title-text { font-size: 1.8rem; margin-bottom: 10px; font-weight: 800; }
+        .bio-p { color: #9ca3af; font-size: 1rem; line-height: 1.5; }
 
-        .mini-input { background: transparent; border: none; color: white; width: 100%; }
-
-        .mini-slash { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: #1f232d; padding: 1px 6px; border-radius: 4px; font-size: 0.7rem; }
-
-        .page-wrapper { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 60px; }
-
-        .staff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .staff-mini-card { background: #11141b; padding: 12px; border-radius: 10px; display: flex; gap: 12px; }
-
-        .feature-card { display: flex; gap: 40px; background: #11141b; padding: 40px; border-radius: 20px; }
-
-        /* 🔥 DESKTOP ONLY FIX */
-        @media (min-width: 901px) {
-          .logo-text {
-            font-size: 1.9rem;
-          }
-
-          .logo-text span {
-            font-size: 2.2rem;
-          }
-
-          .nav-left {
-            margin-left: -40px;
-          }
-        }
-
-        @media (max-width: 900px) {
-          .nav-container { flex-direction: column; gap: 15px; }
-          .feature-card { flex-direction: column; }
+        /* MOBILE FIXES */
+        @media (max-width: 850px) {
+          .nav-center { display: none; }
+          .staff-grid { grid-template-columns: 1fr; }
+          .feature-card { flex-direction: column; text-align: center; padding: 30px; }
         }
       `}</style>
     </div>
