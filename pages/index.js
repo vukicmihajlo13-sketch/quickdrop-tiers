@@ -80,8 +80,8 @@ export default function Home() {
         {/* FEATURE SECTIONS */}
         <div className="feature-card">
           <div className="card-left">
-            <img src="https://minotar.net/helm/carinoh/120.png" alt="carinoh" className="avatar-img" />
-            <h2 className="name-text">carinoh</h2>
+            <img src="https://minotar.net/helm/carinoh/120.png" alt="Carinoh" className="avatar-img" />
+            <h2 className="name-text">Carinoh</h2>
             <div className="badge">Founder</div>
           </div>
           <div className="card-right">
