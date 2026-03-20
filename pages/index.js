@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { FaDiscord, FaTrophy, FaHome, FaSsh, FaYoutube, FaChevronDown } from 'react-icons/fa'; // FaSsh or FaBox for Kits
+import { FaDiscord, FaTrophy, FaHome, FaShieldAlt, FaYoutube, FaChevronDown } from 'react-icons/fa';
 
 export default function Home() {
   const [players, setPlayers] = useState([]);
@@ -67,7 +67,7 @@ export default function Home() {
             position: 'absolute', 
             left: '50%',
             transform: 'translateX(-50%)',
-            zIndex: 50, // Higher than side containers
+            zIndex: 50, 
             whiteSpace: 'nowrap',
             pointerEvents: 'auto' 
           }}>
@@ -80,9 +80,9 @@ export default function Home() {
             <a href="https://discord.gg/EKXHuKMXT4" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <FaDiscord size={18} /> Discord
             </a>
-            {/* API DOCS -> KITS */}
+            {/* KITS LINK */}
             <a href="#kits" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <FaSsh size={16} /> Kits
+              <FaShieldAlt size={16} /> Kits
             </a>
           </div>
 
