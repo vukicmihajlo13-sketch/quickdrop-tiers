@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { FaDiscord, FaTrophy, FaHome, FaShieldAlt, FaYoutube, FaUsers, FaGithub, FaPlayCircle, FaExternalLinkAlt, FaCrown, FaMedal, FaClock } from 'react-icons/fa';
+import { FaDiscord, FaTrophy, FaHome, FaShieldAlt, FaYoutube, FaUsers, FaGithub, FaPlayCircle, FaExternalLinkAlt, FaCrown, FaMedal, FaClock, FaCode } from 'react-icons/fa';
 import Rankings from '../components/Rankings';
 
 export default function Home() {
@@ -30,13 +30,6 @@ export default function Home() {
         });
     }
   }, [activeTab]);
-
-  const clipData = {
-    title: "Insane Shield Disable",
-    creator: "PlayerName",
-    description: "Watch how they perfectly timed the axe swap to secure the quickdrop.",
-    link: "https://youtube.com/your-clip-link"
-  };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -124,7 +117,6 @@ export default function Home() {
                 <p className="bio-p">Meet Caackee, the Lead Developer. He ensures the Quickdrop infrastructure is optimized and safely working.</p>
               </div>
               <div className="card-left">
-                {/* Applied the 'dev-glow' for the maxed enchanted look */}
                 <img src="https://minotar.net/helm/Caackee/120.png" alt="Caackee" className="avatar-img dev-glow" />
                 <h2 className="name-text">Caackee</h2>
                 <div className="badge dev-badge"> Lead Developer</div>
@@ -210,7 +202,25 @@ export default function Home() {
 
         {activeTab === 'staff' && (
           <div className="staff-tab-view">
-            <h2 className="staff-heading">Community Team</h2>
+            <h2 className="staff-heading">Administration</h2>
+            <div className="staff-grid main-staff">
+               <div className="staff-mini-card admin-border">
+                  <img src="https://minotar.net/helm/carinoh/60.png" alt="carinoh" className="staff-avatar" />
+                  <div className="staff-info">
+                    <span className="staff-name">carinoh</span>
+                    <span className="staff-role owner">Founder</span>
+                  </div>
+                </div>
+                <div className="staff-mini-card dev-border">
+                  <img src="https://minotar.net/helm/Caackee/60.png" alt="Caackee" className="staff-avatar" />
+                  <div className="staff-info">
+                    <span className="staff-name">Caackee</span>
+                    <span className="staff-role developer">Lead Developer</span>
+                  </div>
+                </div>
+            </div>
+
+            <h2 className="staff-heading sub-heading">Moderation Team</h2>
             <div className="staff-grid">
               {['Staff1', 'Staff2', 'Staff3'].map((staff) => (
                 <div key={staff} className="staff-mini-card">
@@ -250,6 +260,11 @@ export default function Home() {
         .nav-center a { display: flex; align-items: center; gap: 8px; color: #9ca3af; text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: 0.2s; }
         .nav-center a:hover, .nav-center a.active { color: white; }
 
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .mini-search { position: relative; background: #0b0d12; border: 1px solid #1f232d; border-radius: 8px; padding: 6px 12px; display: flex; align-items: center; }
+        .mini-input { background: none; border: none; color: white; font-size: 0.85rem; width: 140px; }
+        .mini-slash { color: #475569; font-size: 0.8rem; font-weight: 800; background: #1f232d; padding: 1px 6px; border-radius: 4px; margin-left: 8px; }
+
         .dev-glow { 
           border: 2px solid #8b5cf6; 
           box-shadow: 0 0 15px rgba(139, 92, 246, 0.3); 
@@ -262,17 +277,7 @@ export default function Home() {
           100% { filter: brightness(1) drop-shadow(0 0 2px #8b5cf6); }
         }
 
-        .queue-row {
-          background: #11141b;
-          border: 1px solid #1f232d;
-          padding: 15px 25px;
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          gap: 20px;
-          margin-bottom: 10px;
-        }
-
+        .queue-row { background: #11141b; border: 1px solid #1f232d; padding: 15px 25px; border-radius: 12px; display: flex; align-items: center; gap: 20px; margin-bottom: 10px; }
         .q-pos { font-weight: 900; color: #3b82f6; font-size: 1.2rem; min-width: 40px; }
         .q-avatar { border-radius: 4px; }
         .q-name { font-weight: 700; flex: 1; }
@@ -280,24 +285,37 @@ export default function Home() {
 
         .page-wrapper { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 30px; }
         .staff-heading { font-size: 2.2rem; font-weight: 900; color: white; margin-bottom: 20px; text-align: center; }
-        
-        .tester-podium { display: flex; justify-content: center; align-items: flex-end; gap: 20px; margin-top: 40px; }
-        .tester-card { background: #11141b; border: 1px solid #1f232d; border-radius: 16px; padding: 25px; text-align: center; flex: 1; max-width: 300px; }
-        .t-rank-1 { order: 2; transform: translateY(-30px); border-color: #fbbf24; }
-        .champion-glow { filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.3)); border: 2px solid #fbbf24; }
+        .sub-heading { font-size: 1.5rem; margin-top: 40px; text-align: left; border-left: 4px solid #3b82f6; padding-left: 15px; }
 
-        .feature-card { display: flex; gap: 40px; background: #11141b; padding: 40px; border-radius: 16px; align-items: center; border: 1px solid #1f232d; }
+        .feature-card { display: flex; gap: 40px; background: #11141b; padding: 40px; border-radius: 16px; align-items: center; border: 1px solid #1f232d; margin-bottom: 20px; }
         .avatar-img { border-radius: 12px; width: 110px; }
         .badge { background: #3b82f6; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; display: inline-block; }
         .dev-badge { background: #8b5cf6; }
 
         .staff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .staff-mini-card { background: #11141b; padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 15px; border: 1px solid #1f232d; }
+        .main-staff { grid-template-columns: repeat(2, 1fr); margin-bottom: 20px; }
+        .staff-mini-card { background: #11141b; padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 15px; border: 1px solid #1f232d; transition: 0.2s; }
+        .staff-mini-card:hover { border-color: #3b82f6; transform: translateY(-2px); }
+        .admin-border { border-color: #3b82f633; }
+        .dev-border { border-color: #8b5cf633; }
+        .staff-avatar { border-radius: 8px; }
+        .staff-info { display: flex; flex-direction: column; }
+        .staff-name { font-weight: 800; color: white; }
+        .staff-role { font-size: 0.7rem; font-weight: 700; color: #9ca3af; text-transform: uppercase; }
+        .owner { color: #3b82f6; }
+        .developer { color: #8b5cf6; }
+
+        .tester-podium { display: flex; justify-content: center; align-items: flex-end; gap: 20px; margin-top: 40px; }
+        .tester-card { background: #11141b; border: 1px solid #1f232d; border-radius: 16px; padding: 25px; text-align: center; flex: 1; max-width: 300px; }
+        .t-rank-1 { order: 2; transform: translateY(-30px); border-color: #fbbf24; }
+        .champion-glow { filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.3)); border: 2px solid #fbbf24; }
         
         @media (max-width: 768px) {
           .nav-center { display: none; }
-          .staff-grid { grid-template-columns: 1fr; }
+          .staff-grid, .main-staff { grid-template-columns: 1fr; }
           .feature-card { flex-direction: column; text-align: center; }
+          .tester-podium { flex-direction: column; align-items: center; }
+          .t-rank-1 { order: unset; transform: none; }
         }
       `}</style>
     </div>
