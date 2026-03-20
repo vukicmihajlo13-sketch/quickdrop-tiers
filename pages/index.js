@@ -20,20 +20,18 @@ export default function Home() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: '#0b0d12', minHeight: '100vh', color: 'white', fontFamily: 'Inter, sans-serif' }}>
+    <div className="container">
       
       {/* NAVBAR */}
       <nav className="navbar">
         <div className="nav-container">
           
-          {/* 1. LOGO */}
           <div className="nav-left">
             <h1 className="logo-text">
               QUICKDROP <span style={{ color: '#3b82f6' }}>NETWORK</span>
             </h1>
           </div>
 
-          {/* 2. CENTER LINKS */}
           <div className="nav-center">
             <a href="/"><FaHome size={16} /> Home</a>
             <a href="#rankings"><FaTrophy size={14} /> Rankings</a>
@@ -42,7 +40,6 @@ export default function Home() {
             <a href="#"><FaFileAlt size={14} /> API Docs</a>
           </div>
 
-          {/* 3. SEARCH & SOCIALS */}
           <div className="nav-right">
              <div className="mini-search">
                 <input 
@@ -63,10 +60,9 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* FOUNDER SECTION */}
+      {/* MAIN CONTENT */}
       <main className="page-wrapper">
         <div className="founder-card">
-          {/* Avatar side */}
           <div className="founder-left">
             <img 
               src="https://minotar.net/helm/carinoh/120.png" 
@@ -77,13 +73,12 @@ export default function Home() {
             <div className="badge">Founder</div>
           </div>
 
-          {/* Bio side */}
           <div className="founder-right">
             <h3 className="title-text">
               The Vision Behind <span style={{ color: '#3b82f6' }}>Quickdrop</span>
             </h3>
             <p className="bio-p">
-              As the founder of the Quickdrop Network, <strong>carinoh</strong> is the driving force behind our community's growth and direction. With a focus on high-tier competitive play, he has built an environment where the best players thrive.
+              As the founder of the Quickdrop Network, <strong>carinoh</strong> is the driving force behind our community's growth and direction.
             </p>
             
             <div className="stats-row">
@@ -101,7 +96,19 @@ export default function Home() {
       </main>
 
       <style jsx>{`
-        /* NAVBAR DESKTOP */
+        .container {
+          background-color: #0b0d12;
+          min-height: 100vh;
+          color: white;
+          font-family: 'Inter', sans-serif;
+        }
+
+        /* STRIP ALL OUTLINES & BORDERS */
+        * {
+          outline: none !important;
+          -webkit-tap-highlight-color: transparent;
+        }
+
         .navbar {
           padding: 15px 40px;
           background-color: #11141b;
@@ -110,6 +117,7 @@ export default function Home() {
           top: 0;
           z-index: 100;
         }
+
         .nav-container {
           display: flex;
           align-items: center;
@@ -117,13 +125,13 @@ export default function Home() {
           max-width: 1600px;
           margin: 0 auto;
         }
-        .logo-text { font-size: 1.4rem; font-weight: 900; text-transform: uppercase; margin: 0; white-space: nowrap; }
-        .nav-center { display: flex; gap: 30px; color: #9ca3af; font-weight: 600; font-size: 0.95rem; }
-        .nav-center a { display: flex; align-items: center; gap: 8px; color: inherit; }
+
+        .logo-text { font-size: 1.4rem; font-weight: 900; margin: 0; }
+        .nav-center { display: flex; gap: 30px; color: #9ca3af; font-size: 0.95rem; }
+        .nav-center a { display: flex; align-items: center; gap: 8px; color: inherit; text-decoration: none; }
         .nav-right { display: flex; align-items: center; gap: 20px; }
         .nav-socials { display: flex; gap: 15px; color: #9ca3af; }
 
-        /* MINI SEARCH BAR */
         .mini-search {
           position: relative;
           background: #080a0f;
@@ -132,10 +140,16 @@ export default function Home() {
           padding: 8px 15px;
           width: 240px;
         }
-        .mini-input { background: transparent; border: none; color: white; outline: none; width: 100%; font-size: 0.9rem; }
-        .mini-slash { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: #1f232d; padding: 2px 8px; border-radius: 5px; font-size: 0.75rem; color: #4b5563; }
 
-        /* FOUNDER CARD PC */
+        .mini-input {
+          background: transparent;
+          border: none;
+          color: white;
+          width: 100%;
+          font-size: 0.9rem;
+        }
+
+        /* FOUNDER SECTION */
         .page-wrapper { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
         .founder-card {
           display: flex;
@@ -145,30 +159,38 @@ export default function Home() {
           border-radius: 25px;
           border: 1px solid #1f232d;
           align-items: center;
+          box-shadow: none; /* Removed shadow that might look like a border */
         }
-        .founder-left { text-align: center; min-width: 200px; }
-        .avatar-img { border-radius: 15px; width: 120px; box-shadow: 0 0 30px rgba(59, 130, 246, 0.3); border: 2px solid #1f232d; }
+
+        .avatar-img { 
+          border-radius: 15px; 
+          width: 120px; 
+          border: 1px solid #1f232d;
+          box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.5); /* Softened glow */
+        }
+
         .name-text { font-size: 1.8rem; margin: 15px 0 5px; }
-        .badge { background: #3b82f6; display: inline-block; padding: 5px 15px; border-radius: 6px; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; }
+        .badge { background: #3b82f6; padding: 5px 15px; border-radius: 6px; font-size: 0.75rem; font-weight: 900; }
         
-        .founder-right { flex: 1; }
         .title-text { font-size: 2.5rem; margin: 0 0 15px; font-weight: 800; }
         .bio-p { color: #9ca3af; font-size: 1.15rem; line-height: 1.8; margin-bottom: 30px; }
         .stats-row { display: flex; gap: 40px; }
         .stat { border-left: 3px solid #3b82f6; padding-left: 20px; }
-        .label { display: block; color: #4b5563; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; }
+        .label { display: block; color: #4b5563; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
         .value { font-size: 1.1rem; font-weight: 700; }
 
-        /* MOBILE OVERRIDES */
         @media (max-width: 1100px) {
-          .nav-container { flex-direction: column; gap: 15px; }
-          .nav-center { gap: 15px; flex-wrap: wrap; justify-content: center; font-size: 0.85rem; }
-          .mini-search { width: 100%; max-width: 400px; }
-          .founder-card { flex-direction: column; text-align: center; padding: 30px; gap: 30px; }
+          .nav-container { flex-direction: column; gap: 15px; padding: 10px 0; }
+          .nav-center { gap: 15px; flex-wrap: wrap; justify-content: center; }
+          .mini-search { width: 90%; }
+          .founder-card { flex-direction: column; text-align: center; padding: 30px; }
           .stats-row { flex-direction: column; align-items: center; gap: 20px; }
           .stat { border-left: none; border-top: 3px solid #3b82f6; padding: 15px 0 0; width: 100%; }
-          .title-text { font-size: 1.8rem; }
         }
+      `}</style>
+
+      <style jsx global>{`
+        body { margin: 0; background-color: #0b0d12; }
       `}</style>
     </div>
   );
