@@ -82,23 +82,23 @@ export default function Home() {
               <div className="card-left">
                 <img src="https://minotar.net/helm/carinoh/120.png" alt="Carinoh" className="avatar-img" />
                 <h2 className="name-text">Carinoh</h2>
-                <div className="badge">Founder</div>
+                <div className="badge"> Founder</div>
               </div>
               <div className="card-right">
                 <h3 className="title-text">The Vision Behind <span className="logo-accent">Quickdrop</span></h3>
-                <p className="bio-p">As the founder of the Quickdrop Network, carinoh is the driving force behind our community's growth and direction.</p>
+                <p className="bio-p">As the founder of the Quickdrop Network, Carinoh is the driving force behind our community's growth and direction.</p>
               </div>
             </div>
 
             <div className="feature-card">
               <div className="card-right">
                 <h3 className="title-text">Mastering the <span className="logo-accent">Architecture</span></h3>
-                <p className="bio-p">Meet Caackee, the Lead Developer. He ensures the Quickdrop infrastructure is optimized and innovative.</p>
+                <p className="bio-p">Meet Caackee, the Lead Developer. He ensures the Quickdrop infrastructure is optimized and safly working.</p>
               </div>
               <div className="card-left">
                 <img src="https://minotar.net/helm/Caackee/120.png" alt="Caackee" className="avatar-img dev-glow" />
                 <h2 className="name-text">Caackee</h2>
-                <div className="badge dev-badge">Developer</div>
+                <div className="badge dev-badge"> Developer</div>
               </div>
             </div>
 
