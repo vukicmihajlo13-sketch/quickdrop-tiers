@@ -1,10 +1,27 @@
 import { useEffect, useState, useRef } from 'react';
 import { FaDiscord, FaTrophy, FaHome, FaShieldAlt, FaYoutube, FaUsers, FaGithub, FaPlayCircle, FaExternalLinkAlt, FaCrown, FaMedal } from 'react-icons/fa';
+import Rankings from '../components/Rankings'; // Ensure this path matches your file structure
 
 export default function Home() {
   const [search, setSearch] = useState('');
   const [activeTab, setActiveTab] = useState('home'); 
+  const [players, setPlayers] = useState([]);
+  const [loading, setLoading] = useState(false);
   const searchInput = useRef(null);
+
+  // Fetch players from your API
+  useEffect(() => {
+    if (activeTab === 'rankings') {
+      setLoading(true);
+      fetch('/api/Rankings')
+        .then((res) => res.json())
+        .then((data) => {
+          setPlayers(data);
+          setLoading(false);
+        })
+        .catch(() => setLoading(false));
+    }
+  }, [activeTab]);
 
   const clipData = {
     title: "Insane Shield Disable",
@@ -23,6 +40,11 @@ export default function Home() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
+
+  // Filter players based on the search bar
+  const filteredPlayers = players.filter(p => 
+    p.ign.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div className="container">
@@ -93,7 +115,7 @@ export default function Home() {
             <div className="feature-card">
               <div className="card-right">
                 <h3 className="title-text">Mastering the <span className="logo-accent">Architecture</span></h3>
-                <p className="bio-p">Meet Caackee, the Lead Developer. He ensures the Quickdrop infrastructure is optimized and safly working.</p>
+                <p className="bio-p">Meet Caackee, the Lead Developer. He ensures the Quickdrop infrastructure is optimized and safely working.</p>
               </div>
               <div className="card-left">
                 <img src="https://minotar.net/helm/Caackee/120.png" alt="Caackee" className="avatar-img dev-glow" />
@@ -108,8 +130,6 @@ export default function Home() {
             <div className="testers-container">
               <h2 className="staff-heading">Testers of the Month</h2>
               <div className="tester-podium">
-                
-                {/* RANK #2 */}
                 <div className="tester-card t-rank-2">
                   <div className="tester-header">
                     <FaMedal color="#94a3b8" size={24} />
@@ -121,7 +141,6 @@ export default function Home() {
                   <div className="tester-stat">Completed tests: <span className="stat-highlight">56</span></div>
                 </div>
 
-                {/* RANK #1 */}
                 <div className="tester-card t-rank-1">
                   <div className="tester-header">
                     <FaCrown color="#fbbf24" size={32} />
@@ -133,7 +152,6 @@ export default function Home() {
                   <div className="tester-stat">Completed tests: <span className="stat-highlight">69</span></div>
                 </div>
 
-                {/* RANK #3 */}
                 <div className="tester-card t-rank-3">
                   <div className="tester-header">
                     <FaMedal color="#cd7f32" size={24} />
@@ -172,6 +190,17 @@ export default function Home() {
           </>
         )}
 
+        {activeTab === 'rankings' && (
+          <div className="rankings-tab-view">
+             <h2 className="staff-heading">Official Rankings</h2>
+             {loading ? (
+               <div className="loading-state">Syncing with database...</div>
+             ) : (
+               <Rankings players={filteredPlayers} />
+             )}
+          </div>
+        )}
+
         {activeTab === 'staff' && (
           <div className="staff-grid">
             {['Staff1', 'Staff2', 'Staff3'].map((staff) => (
@@ -186,7 +215,7 @@ export default function Home() {
           </div>
         )}
 
-        {(activeTab === 'rankings' || activeTab === 'kits') && (
+        {activeTab === 'kits' && (
           <div className="blank-state">
              <h2 className="title-text" style={{textTransform: 'capitalize'}}>{activeTab}</h2>
              <p className="bio-p">This section is currently under development.</p>
@@ -211,15 +240,9 @@ export default function Home() {
           padding: 0;
         }
 
-        :global(a:focus, button:focus, input:focus) {
-          outline: none !important;
-          box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
-        }
-
         .container { background-color: #0b0d12; min-height: 100vh; color: white; font-family: 'Inter', sans-serif; }
         .navbar { padding: 25px 0; background-color: #11141b; border-bottom: 1px solid #1f232d; position: sticky; top: 0; z-index: 100; }
         .nav-container { display: flex; align-items: center; max-width: 1400px; margin: 0 auto; padding: 0 30px; }
-        .nav-left { flex: 1.5; }
         .logo-text { font-size: 1.8rem; font-weight: 950; letter-spacing: -1px; }
         .logo-accent { color: #3b82f6; font-style: italic; }
         .nav-center { flex: 2; display: flex; gap: 30px; justify-content: center; }
@@ -232,7 +255,9 @@ export default function Home() {
         .nav-socials { display: flex; gap: 12px; border-left: 1px solid #1f232d; padding-left: 15px; }
         .nav-socials a { color: #9ca3af; transition: 0.2s; }
         .nav-socials a:hover { color: white; }
+        
         .page-wrapper { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 30px; }
+        .loading-state { text-align: center; color: #3b82f6; font-weight: 700; padding: 40px; }
 
         .staff-heading { font-size: 2.2rem; font-weight: 900; color: white; margin-bottom: 20px; text-align: center; letter-spacing: -0.5px; }
         .spacer { height: 50px; }
@@ -243,61 +268,32 @@ export default function Home() {
         .t-rank-1 { order: 2; transform: translateY(-30px); border-color: #fbbf24; background: linear-gradient(180deg, rgba(251, 191, 36, 0.05) 0%, #11141b 100%); }
         .t-rank-2 { order: 1; }
         .t-rank-3 { order: 3; }
-        .tester-header { display: flex; align-items: center; gap: 8px; margin-bottom: 15px; }
         .tester-rank { font-weight: 900; font-size: 1.2rem; color: #94a3b8; }
         .rank-gold { color: #fbbf24; }
         .tester-img { border-radius: 12px; margin-bottom: 15px; }
         .champion-glow { filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.3)); border: 2px solid #fbbf24; }
         .tester-name { font-size: 1.3rem; font-weight: 800; margin-bottom: 8px; }
-        .tester-bio { font-size: 0.85rem; color: #9ca3af; margin-bottom: 15px; line-height: 1.4; }
         .tester-stat { font-size: 0.9rem; font-weight: 600; color: #64748b; border-top: 1px solid #1f232d; padding-top: 12px; width: 100%; }
         .stat-highlight { color: #3b82f6; font-weight: 800; }
 
-        .clip-of-week-container { max-width: 800px; margin: 0 auto; text-align: center; }
-        .clip-heading { font-size: 1.8rem; font-weight: 900; margin-bottom: 20px; color: #3b82f6; text-transform: uppercase; letter-spacing: 1.5px; }
-        .clip-card { display: flex; align-items: center; gap: 25px; background: linear-gradient(135deg, #1e293b, #0f172a); padding: 30px; border-radius: 16px; border: 1px solid #3b82f6; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); transition: transform 0.3s ease; }
-        .clip-card:hover { transform: scale(1.03); box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5); }
-        .clip-icon { flex-shrink: 0; background: #3b82f6; border-radius: 50%; padding: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px #3b82f6; }
-        .clip-content { text-align: left; flex: 1; }
-        .clip-header { display: flex; align-items: center; gap: 15px; margin-bottom: 8px; flex-wrap: wrap; }
-        .clip-badge { background: rgba(59, 130, 246, 0.15); color: #3b82f6; padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
-        .clip-title { font-weight: 900; font-size: 1.3rem; color: white; margin: 0; }
-        .clip-description { font-size: 1rem; color: #cbd5e1; margin-top: 6px; }
-        .clip-link-btn { display: inline-flex; align-items: center; background: #3b82f6; color: white; text-decoration: none; padding: 12px 26px; border-radius: 12px; font-weight: 700; margin-top: 18px; font-size: 1rem; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5); transition: background-color 0.3s ease, box-shadow 0.3s ease; }
-        .clip-link-btn:hover { background: #2563eb; }
         .feature-card { display: flex; gap: 40px; background: #11141b; padding: 40px; border-radius: 16px; align-items: center; border: 1px solid #1f232d; }
-        .avatar-img { border-radius: 12px; width: 110px; margin-bottom: 12px; filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.2)); }
+        .avatar-img { border-radius: 12px; width: 110px; margin-bottom: 12px; }
         .badge { background: #3b82f6; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; display: inline-block; }
         .dev-badge { background: #8b5cf6; }
         .title-text { font-size: 1.8rem; margin-bottom: 10px; font-weight: 800; }
         .bio-p { color: #9ca3af; line-height: 1.5; }
         .staff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .staff-mini-card { background: #11141b; padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 15px; border: 1px solid #1f232d; }
-        .staff-avatar { width: 45px; height: 45px; border-radius: 8px; }
         .blank-state { text-align: center; padding: 80px; border: 2px dashed #1f232d; border-radius: 20px; }
 
-        /* MOBILE RESPONSIVENESS */
         @media (max-width: 768px) {
           .nav-container { flex-direction: column; gap: 15px; padding: 15px; text-align: center; }
           .nav-center { gap: 15px; flex-wrap: wrap; order: 2; }
           .nav-right { justify-content: center; width: 100%; order: 3; border-top: 1px solid #1f232d; padding-top: 15px; }
           .nav-left { order: 1; }
-          .page-wrapper { margin: 20px auto; gap: 20px; }
-          .staff-heading { font-size: 1.6rem; }
-          .feature-card { flex-direction: column; text-align: center; padding: 25px; gap: 20px; }
-          .feature-card:nth-of-type(3) { flex-direction: column-reverse; } /* Fixed stacking for Developer card */
-          .card-right { text-align: center; }
-          .tester-podium { flex-direction: column; align-items: center; gap: 20px; margin-top: 20px; }
-          .tester-card { width: 100%; max-width: 100%; }
-          .t-rank-1 { order: 1; transform: translateY(0); margin-bottom: 10px; }
-          .t-rank-2 { order: 2; }
-          .t-rank-3 { order: 3; }
-          .clip-card { flex-direction: column; text-align: center; padding: 20px; }
-          .clip-content { text-align: center; }
-          .clip-header { justify-content: center; }
+          .tester-podium { flex-direction: column; align-items: center; }
+          .t-rank-1 { transform: translateY(0); }
           .staff-grid { grid-template-columns: 1fr; }
-          .logo-text { font-size: 1.4rem; }
-          .avatar-img { width: 90px; }
         }
       `}</style>
     </div>
