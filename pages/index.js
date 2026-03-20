@@ -76,10 +76,8 @@ export default function Home() {
         
         {activeTab === 'home' && (
           <>
-            {/* Lead Staff Team Heading */}
             <h2 className="staff-heading">The Lead Staff Team</h2>
 
-            {/* Founder Feature Card */}
             <div className="feature-card">
               <div className="card-left">
                 <img src="https://minotar.net/helm/carinoh/120.png" alt="Carinoh" className="avatar-img" />
@@ -92,7 +90,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Developer Feature Card */}
             <div className="feature-card">
               <div className="card-right">
                 <h3 className="title-text">Mastering the <span className="logo-accent">Architecture</span></h3>
@@ -105,10 +102,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Spacer between staff and clip */}
             <div className="spacer"></div>
 
-            {/* Clip Of The Week Section */}
             <div className="clip-of-week-container">
               <h2 className="clip-heading">Clip Of The Week</h2>
               <div className="clip-card">
@@ -188,7 +183,11 @@ export default function Home() {
         .clip-title { font-weight: 900; font-size: 1.3rem; color: white; margin: 0; }
         .clip-description { font-size: 1rem; color: #cbd5e1; margin-top: 6px; }
 
-        /* FIXED: remove white outline and add subtle glow */
+        /* REMOVE WHITE OUTLINE AND ADD GLOWS */
+        *:focus { outline: none !important; box-shadow: 0 0 8px 2px rgba(59, 130, 246, 0.5); transition: box-shadow 0.2s ease; }
+        button:focus, a:focus, input:focus, textarea:focus { outline: none !important; box-shadow: 0 0 8px 2px rgba(59, 130, 246, 0.5); }
+        .clip-link-btn:focus { box-shadow: 0 0 12px 3px rgba(59, 130, 246, 0.6); }
+
         .clip-link-btn {
           display: inline-flex;
           align-items: center;
@@ -202,13 +201,8 @@ export default function Home() {
           font-size: 1rem;
           box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
           transition: background-color 0.3s ease, box-shadow 0.3s ease;
-          outline: none; /* removes default white outline */
         }
         .clip-link-btn:hover { background: #2563eb; }
-        .clip-link-btn:focus {
-          outline: none; /* no white outline on focus */
-          box-shadow: 0 0 12px 3px rgba(59, 130, 246, 0.6); /* subtle blue glow */
-        }
 
         .feature-card { display: flex; gap: 40px; background: #11141b; padding: 40px; border-radius: 16px; align-items: center; border: 1px solid #1f232d; }
         .avatar-img { border-radius: 12px; width: 110px; margin-bottom: 12px; filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.2)); }
@@ -220,12 +214,6 @@ export default function Home() {
         .staff-mini-card { background: #11141b; padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 15px; border: 1px solid #1f232d; }
         .staff-avatar { width: 45px; height: 45px; border-radius: 8px; }
         .blank-state { text-align: center; padding: 80px; border: 2px dashed #1f232d; border-radius: 20px; }
-
-        /* FIX white outline inside feature-card */
-        .feature-card *:focus {
-          outline: none !important;
-          box-shadow: 0 0 8px 2px rgba(59, 130, 246, 0.7); /* subtle blue glow instead */
-        }
       `}</style>
     </div>
   );
